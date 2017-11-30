@@ -1,0 +1,39 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/deepl-rb
+    docker:
+    - image: circleci/ruby:2.4-node
+    steps:
+    - checkout
+
+    # Restore bundle cache
+    - type: cache-restore
+      name: Restore bundle cache
+      key: deepl-rb-bundle-{{ checksum "Gemfile.lock" }}
+
+    - run:
+        name: Bundle Install
+        command: bundle install --path vendor/bundle
+
+    # Store bundle cache
+    - type: cache-save
+      name: Store bundle cache
+      key: deepl-rb-bundle-{{ checksum "Gemfile.lock" }}
+      paths:
+      - vendor/bundle
+
+    # Run rspec
+    - type: shell
+      command: |
+        bundle exec rspec $(circleci tests glob "spec/**/*_spec.rb" |
+                            circleci tests split --split-by=timings)
+
+    # Run rubocop
+    - type: shell
+      command: |
+        bundle exec rubocop
+
+    # Save test results for timing analysis
+    - store_test_results:
+        path: test_results

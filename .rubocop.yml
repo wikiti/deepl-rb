@@ -1,0 +1,17 @@
+# Custom rubocop configuration
+
+AllCops:
+  DisplayCopNames: true
+
+Metrics/BlockLength:
+  Exclude:
+  - "**/*_spec.rb"
+
+Metrics/LineLength:
+  Max: 120
+
+Style/Documentation:
+  Enabled: false
+
+Style/ModuleFunction:
+  EnforcedStyle: extend_self

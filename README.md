@@ -1,0 +1,102 @@
+[![Gem Version](https://badge.fury.io/rb/deepl-rb.svg)](https://badge.fury.io/rb/deepl-rb) [![Dependency Status](https://gemnasium.com/badges/github.com/wikiti/deepl-rb.svg)](https://gemnasium.com/github.com/wikiti/deepl-rb) [![CircleCI](https://circleci.com/gh/wikiti/deepl-rb.svg?style=shield)](https://circleci.com/gh/wikiti/deepl-rb)
+
+# DeepL for ruby
+
+A simple ruby wrapper for the [DeepL translation API (v1)](https://www.deepl.com/docs/api-reference.html).
+
+## Installation
+
+Install this gem with
+
+```sh
+gem install deepl-rb
+```
+
+Or add it to your Gemfile:
+
+```rb
+gem 'deepl-rb'
+```
+
+## Usage
+
+Setup an environment variable named `DEEPL_AUTH_KEY` with your authentication key:
+
+```sh
+export DEEPL_AUTH_KEY="your-api-token"
+```
+
+Alternatively, you can configure the API client within a ruby block:
+
+```rb
+DeepL.configure do |config|
+  config.auth_key = 'your-api-token'
+end
+```
+
+You can also configure the api host:
+
+```rb
+DeepL.configure do |config|
+  config.auth_key = 'your-api-token'
+  config.host = 'https://test-api.deepl.com' # Default value is 'https://api.deepl.com'
+end
+```
+
+### Translate
+
+To translate a simple text, use the `translate` method:
+
+```rb
+item = DeepL.translate 'This is my text', 'EN', 'ES'
+
+puts item.class
+# => DeepL::Resources::Text
+puts item.text
+# => 'Este es mi texto'
+```
+
+You can also auto-detect source language by skipping it with `nil`:
+
+```rb
+item = DeepL.translate 'This is my text', nil, 'ES'
+
+puts item.detected_source_language
+# => 'EN'
+```
+
+You can also translate a list of texts by passing an array as an argument:
+
+```rb
+texts = ['Sample text', 'Another text']
+items = DeepL.translate texts, 'EN', 'ES'
+
+puts items.class
+# => Array
+puts items.first.class
+# => DeepL::Resources::Text
+```
+
+## Development
+
+Clone the repository, and install its dependencies:
+
+```sh
+git clone https://github.com/wikiti/deepl-rb
+cd deepl-rb
+bundle install
+```
+
+To run tests (rspec and rubocop), use
+
+```
+bundle exec rake test
+```
+
+## Contributors
+
+This project has been developed by:
+
+| Avatar | Name | Nickname | Email |
+| ------ | ---- | -------- | ----- |
+| ![](http://www.gravatar.com/avatar/2ae6d81e0605177ba9e17b19f54e6b6c.jpg?s=64)  | Daniel Herzog | Wikiti | [info@danielherzog.es](mailto:info@danielherzog.es)
