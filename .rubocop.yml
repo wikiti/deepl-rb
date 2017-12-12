@@ -4,6 +4,7 @@ AllCops:
   DisplayCopNames: true
   Exclude:
   - deepl-rb.gemspec
+  - vendor/**/*
 
 Metrics/BlockLength:
   Exclude:
