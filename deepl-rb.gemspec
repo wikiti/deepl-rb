@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
+    "deepl-rb.gemspec",
     "lib/deepl.rb",
     "lib/deepl/api.rb",
     "lib/deepl/configuration.rb",
