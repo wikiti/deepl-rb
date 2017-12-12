@@ -4,3 +4,6 @@ doc
 
 # juwelier generated
 pkg
+
+# coverage
+coverage/

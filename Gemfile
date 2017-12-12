@@ -7,6 +7,7 @@ end
 
 group :test do
   # Test
+  gem 'codecov', require: false
   gem 'rspec'
   gem 'rubocop'
   gem 'simplecov'
