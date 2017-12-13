@@ -77,6 +77,31 @@ puts items.first.class
 # => DeepL::Resources::Text
 ```
 
+### Handle exceptions
+
+You can capture and process exceptions that may be raised during API calls. These are all the possible exceptions:
+
+| Exception class | Descripcion |
+| --------------- | ----------- |
+| `DeepL::Exceptions::AuthorizationFailed` | The authorization process has failed. Check your auth_key value. |
+| `DeepL::Exceptions::BadRequest` | Something is wrong in your request. Check `exception.message` for more information. |
+| `DeepL::Exceptions::LimitExceeded` | You've reached the API's call limit. |
+| `DeepL::Exceptions::RequestError` | An unkown request error. Check `exception.response` and `exception.request` for more information. |
+
+An exampling of handling a generic exception:
+
+```rb
+def my_method
+  item = DeepL.translate 'This is my text', nil, 'ES'
+rescue DeepL::Exceptions::RequestError => e
+  puts 'Oops!'
+  puts "Code: #{e.response.code}"
+  puts "Response body: #{e.response.body}"
+  puts "Request body: #{e.request.body}"
+end
+
+```
+
 ## Development
 
 Clone the repository, and install its dependencies:
