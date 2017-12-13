@@ -77,6 +77,18 @@ puts items.first.class
 # => DeepL::Resources::Text
 ```
 
+Here's a list of available language codes:
+
+| Language code   | Language
+| --------------- | ---------------
+| `EN`            | English
+| `DE`            | German
+| `FR`            | French
+| `ES`            | Spanish
+| `IT`            | Italian
+| `NL`            | Dutch
+| `PL`            | Polish
+
 ### Handle exceptions
 
 You can capture and process exceptions that may be raised during API calls. These are all the possible exceptions:
