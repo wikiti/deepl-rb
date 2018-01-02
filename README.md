@@ -10,6 +10,7 @@ Install this gem with
 
 ```sh
 gem install deepl-rb
+# Load it in your ruby file using `require 'deepl'`
 ```
 
 Or add it to your Gemfile:
