@@ -3,10 +3,11 @@ module DeepL
     class Base
       API_VERSION = 'v1'.freeze
 
-      attr_reader :api, :response
+      attr_reader :api, :response, :options
 
-      def initialize(api)
+      def initialize(api, options = {})
         @api = api
+        @options = options
       end
 
       def request
@@ -15,9 +16,13 @@ module DeepL
 
       private
 
+      def option(name)
+        options[name.to_s] || options[name.to_sym]
+      end
+
       def post(payload)
         request = Net::HTTP::Post.new(uri.request_uri)
-        request.set_form_data(payload.compact)
+        request.set_form_data(payload.reject { |_, v| v.nil? })
         response = http.request(request)
 
         validate_response!(request, response)
@@ -65,7 +70,7 @@ module DeepL
       end
 
       def query_params
-        { auth_key: api.configuration.auth_key }
+        { auth_key: api.configuration.auth_key }.merge(options)
       end
     end
   end

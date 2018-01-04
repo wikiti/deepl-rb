@@ -45,6 +45,18 @@ describe DeepL::Requests::TranslateText do
       end
     end
 
+    context 'When performing a valid request with tag handling' do
+      let(:text) { '<p>Sample text</p>' }
+
+      it 'should return a text object' do
+        text = subject.request
+
+        expect(text).to be_a(DeepL::Resources::Text)
+        expect(text.text).to eq('<p>Texto de muestra</p>')
+        expect(text.detected_source_language).to eq('EN')
+      end
+    end
+
     context 'When performing a bad request' do
       context 'When using an invalid token' do
         let(:api) do

@@ -31,10 +31,9 @@ module DeepL
     @api ||= API.new(configuration)
   end
 
-  def translate(text, options = {})
+  def translate(text, source_lang, target_lang, options = {})
     configure if @configuration.nil?
-    Requests::TranslateText.new(api, text, fetch(options, :source_lang),
-                                fetch(options, :target_lang)).request
+    Requests::TranslateText.new(api, text, source_lang, target_lang, options).request
   end
 
   # -- Configuration
@@ -46,11 +45,5 @@ module DeepL
   def configure
     yield configuration if block_given?
     configuration.validate!
-  end
-
-  private
-
-  def fetch(hash, key)
-    hash[key.to_s] || hash[key.to_sym]
   end
 end

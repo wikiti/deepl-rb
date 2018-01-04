@@ -41,6 +41,7 @@ describe DeepL do
     let(:input) { 'Sample' }
     let(:source_lang) { 'EN' }
     let(:target_lang) { 'ES' }
+    let(:options) { { param: 'fake' } }
 
     around do |example|
       VCR.use_cassette('deepl_translate') { example.call }
@@ -49,9 +50,9 @@ describe DeepL do
     context 'When translating a text' do
       it 'should create and call a request object' do
         expect(DeepL::Requests::TranslateText).to receive(:new)
-          .with(subject.api, input, source_lang, target_lang).and_call_original
+          .with(subject.api, input, source_lang, target_lang, options).and_call_original
 
-        text = subject.translate(input, source_lang: source_lang, target_lang: target_lang)
+        text = subject.translate(input, source_lang, target_lang, options)
         expect(text).to be_a(DeepL::Resources::Text)
       end
     end

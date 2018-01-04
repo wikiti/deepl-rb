@@ -49,32 +49,32 @@ end
 To translate a simple text, use the `translate` method:
 
 ```rb
-item = DeepL.translate 'This is my text', 'EN', 'ES'
+translation = DeepL.translate 'This is my text', 'EN', 'ES'
 
-puts item.class
+puts translation.class
 # => DeepL::Resources::Text
-puts item.text
+puts translation.text
 # => 'Este es mi texto'
 ```
 
-You can also auto-detect source language by skipping it with `nil`:
+Enable auto-detect source language by skipping the source language with `nil`:
 
 ```rb
-item = DeepL.translate 'This is my text', nil, 'ES'
+translation = DeepL.translate 'This is my text', nil, 'ES'
 
-puts item.detected_source_language
+puts translation.detected_source_language
 # => 'EN'
 ```
 
-You can also translate a list of texts by passing an array as an argument:
+Translate a list of texts by passing an array as an argument:
 
 ```rb
 texts = ['Sample text', 'Another text']
-items = DeepL.translate texts, 'EN', 'ES'
+translations = DeepL.translate texts, 'EN', 'ES'
 
-puts items.class
+puts translations.class
 # => Array
-puts items.first.class
+puts translations.first.class
 # => DeepL::Resources::Text
 ```
 
@@ -89,6 +89,16 @@ Here's a list of available language codes:
 | `IT`            | Italian
 | `NL`            | Dutch
 | `PL`            | Polish
+
+You can also use custom query parameters, like `tag_handling`:
+
+```rb
+texts = ['Sample text',¡]
+translation = DeepL.translate '<p>A sample</p>', 'EN', 'ES', tag_handling: true
+
+puts translation.text
+# => ""
+```
 
 ### Handle exceptions
 

@@ -3,8 +3,8 @@ module DeepL
     class TranslateText < Base
       attr_reader :text, :source_lang, :target_lang
 
-      def initialize(api, text, source_lang, target_lang)
-        super(api)
+      def initialize(api, text, source_lang, target_lang, options = {})
+        super(api, options)
         @text = text
         @source_lang = source_lang
         @target_lang = target_lang

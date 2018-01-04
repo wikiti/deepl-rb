@@ -107,4 +107,41 @@ http_interactions:
       string: '{"translations":[{"detected_source_language":"EN","text":"Muestra"}]}'
     http_version: 
   recorded_at: Sun, 10 Dec 2017 21:22:11 GMT
+- request:
+    method: post
+    uri: https://api.deepl.com/v1/translate?auth_key=VALID_TOKEN&param=fake
+    body:
+      encoding: US-ASCII
+      string: text=Sample&source_lang=EN&target_lang=ES
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 04 Jan 2018 18:08:31 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '69'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+    body:
+      encoding: UTF-8
+      string: '{"translations":[{"detected_source_language":"EN","text":"Muestra"}]}'
+    http_version: 
+  recorded_at: Thu, 04 Jan 2018 18:08:31 GMT
 recorded_with: VCR 4.0.0
