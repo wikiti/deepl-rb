@@ -93,11 +93,10 @@ Here's a list of available language codes:
 You can also use custom query parameters, like `tag_handling`:
 
 ```rb
-texts = ['Sample text',¡]
 translation = DeepL.translate '<p>A sample</p>', 'EN', 'ES', tag_handling: true
 
 puts translation.text
-# => ""
+# => "<p>Una muestra</p>"
 ```
 
 ### Handle exceptions
