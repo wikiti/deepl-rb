@@ -10,3 +10,6 @@ coverage/
 
 # origin files
 *.orig
+
+# ruby version
+.ruby-version

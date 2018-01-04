@@ -25,24 +25,20 @@ GEM
       hashie (~> 3.5, >= 3.5.2)
       oauth2 (~> 1.0)
     hashdiff (0.3.7)
-    hashie (3.5.6)
+    hashie (3.5.7)
     highline (1.7.10)
     json (2.1.0)
-    juwelier (2.4.7)
+    juwelier (2.1.3)
       builder
-      bundler
-      git
+      bundler (>= 1.13)
+      git (>= 1.2.5)
       github_api
-      highline
-      kamelcase (~> 0)
-      nokogiri
-      psych
+      highline (>= 1.6.15)
+      nokogiri (>= 1.5.10)
       rake
       rdoc
-      semver2
+      semver
     jwt (1.5.6)
-    kamelcase (0.0.1)
-      semver2 (~> 3)
     mini_portile2 (2.3.0)
     multi_json (1.12.2)
     multi_xml (0.6.0)
@@ -55,22 +51,20 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
-    parallel (1.12.0)
+    parallel (1.12.1)
     parser (2.4.0.2)
       ast (~> 2.3)
     powerpack (0.1.1)
-    psych (2.2.2)
     public_suffix (3.0.1)
-    rack (2.0.3)
-    rainbow (2.2.2)
-      rake
+    rack (1.6.8)
+    rainbow (3.0.0)
     rake (12.3.0)
-    rdoc (5.0.0)
+    rdoc (5.1.0)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
       rspec-mocks (~> 3.7.0)
-    rspec-core (3.7.0)
+    rspec-core (3.7.1)
       rspec-support (~> 3.7.0)
     rspec-expectations (3.7.0)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -79,16 +73,16 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.7.0)
     rspec-support (3.7.0)
-    rubocop (0.51.0)
+    rubocop (0.52.1)
       parallel (~> 1.10)
-      parser (>= 2.3.3.1, < 3.0)
+      parser (>= 2.4.0.2, < 3.0)
       powerpack (~> 0.1)
-      rainbow (>= 2.2.2, < 3.0)
+      rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.9.0)
     safe_yaml (1.0.4)
-    semver2 (3.4.2)
+    semver (1.0.1)
     simplecov (0.15.1)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
@@ -98,7 +92,7 @@ GEM
     unicode-display_width (1.3.0)
     url (0.3.2)
     vcr (4.0.0)
-    webmock (3.1.1)
+    webmock (3.2.1)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
@@ -116,4 +110,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.15.4
+   1.16.0.pre.2
