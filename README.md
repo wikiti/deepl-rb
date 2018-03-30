@@ -16,7 +16,7 @@ gem install deepl-rb
 Or add it to your Gemfile:
 
 ```rb
-gem 'deepl-rb'
+gem 'deepl-rb', require: 'deepl'
 ```
 
 ## Usage
