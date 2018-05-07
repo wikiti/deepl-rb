@@ -49,7 +49,7 @@ describe DeepL do
 
     context 'When translating a text' do
       it 'should create and call a request object' do
-        expect(DeepL::Requests::TranslateText).to receive(:new)
+        expect(DeepL::Requests::Translate).to receive(:new)
           .with(subject.api, input, source_lang, target_lang, options).and_call_original
 
         text = subject.translate(input, source_lang, target_lang, options)

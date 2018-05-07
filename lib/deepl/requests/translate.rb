@@ -1,6 +1,6 @@
 module DeepL
   module Requests
-    class TranslateText < Base
+    class Translate < Base
       OPTIONS_CONVERSIONS = {
         split_sentences: { true => '1', false => '0' },
         preserve_formatting: { true => '1', false => '0' }
