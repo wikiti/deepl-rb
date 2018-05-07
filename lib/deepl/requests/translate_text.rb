@@ -1,6 +1,11 @@
 module DeepL
   module Requests
     class TranslateText < Base
+      OPTIONS_CONVERSIONS = {
+        split_sentences: { true => '1', false => '0' },
+        preserve_formatting: { true => '1', false => '0' }
+      }.freeze
+
       attr_reader :text, :source_lang, :target_lang
 
       def initialize(api, text, source_lang, target_lang, options = {})
@@ -8,6 +13,8 @@ module DeepL
         @text = text
         @source_lang = source_lang
         @target_lang = target_lang
+
+        tweak_parameters!
       end
 
       def request
@@ -16,6 +23,13 @@ module DeepL
       end
 
       private
+
+      def tweak_parameters!
+        OPTIONS_CONVERSIONS.each do |param, converter|
+          next unless option?(param) && converter[option(param)]
+          set_option(param, converter[option(param)])
+        end
+      end
 
       def build_texts(request, response)
         data = JSON.parse(response.body)

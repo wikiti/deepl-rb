@@ -13,6 +13,50 @@ describe DeepL::Requests::TranslateText do
         expect(subject).to be_a(DeepL::Requests::TranslateText)
       end
     end
+
+    context 'when using `split_sentences` options' do
+      it 'should convert `true` to `1`' do
+        request = DeepL::Requests::TranslateText.new(api, nil, nil, nil, split_sentences: true)
+        expect(request.options[:split_sentences]).to eq('1')
+      end
+
+      it 'should convert `false` to `0`' do
+        request = DeepL::Requests::TranslateText.new(api, nil, nil, nil, split_sentences: false)
+        expect(request.options[:split_sentences]).to eq('0')
+      end
+
+      it 'should leave `0` as is' do
+        request = DeepL::Requests::TranslateText.new(api, nil, nil, nil, split_sentences: '0')
+        expect(request.options[:split_sentences]).to eq('0')
+      end
+
+      it 'should leave `1` as is' do
+        request = DeepL::Requests::TranslateText.new(api, nil, nil, nil, split_sentences: '1')
+        expect(request.options[:split_sentences]).to eq('1')
+      end
+    end
+
+    context 'when using `preserve_formatting` options' do
+      it 'should convert `true` to `1`' do
+        request = DeepL::Requests::TranslateText.new(api, nil, nil, nil, preserve_formatting: true)
+        expect(request.options[:preserve_formatting]).to eq('1')
+      end
+
+      it 'should convert `false` to `0`' do
+        request = DeepL::Requests::TranslateText.new(api, nil, nil, nil, preserve_formatting: false)
+        expect(request.options[:preserve_formatting]).to eq('0')
+      end
+
+      it 'should leave `0` as is' do
+        request = DeepL::Requests::TranslateText.new(api, nil, nil, nil, preserve_formatting: '0')
+        expect(request.options[:preserve_formatting]).to eq('0')
+      end
+
+      it 'should leave `1` as is' do
+        request = DeepL::Requests::TranslateText.new(api, nil, nil, nil, preserve_formatting: '1')
+        expect(request.options[:preserve_formatting]).to eq('1')
+      end
+    end
   end
 
   describe '#request' do

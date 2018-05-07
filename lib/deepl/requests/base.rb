@@ -16,8 +16,20 @@ module DeepL
 
       private
 
+      def option?(name)
+        options.key?(name.to_s) || options.key?(name.to_sym)
+      end
+
       def option(name)
         options[name.to_s] || options[name.to_sym]
+      end
+
+      def set_option(name, value)
+        if options.key?(name.to_sym)
+          options[name.to_sym] = value
+        else
+          options[name.to_s] = value
+        end
       end
 
       def post(payload)
