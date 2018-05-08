@@ -57,4 +57,22 @@ describe DeepL do
       end
     end
   end
+
+  describe '#usage' do
+    let(:options) { {} }
+
+    around do |example|
+      VCR.use_cassette('deepl_usage') { example.call }
+    end
+
+    context 'When checking usage' do
+      it 'should create and call a request object' do
+        expect(DeepL::Requests::Usage).to receive(:new)
+          .with(subject.api, options).and_call_original
+
+        usage = subject.usage(options)
+        expect(usage).to be_a(DeepL::Resources::Usage)
+      end
+    end
+  end
 end

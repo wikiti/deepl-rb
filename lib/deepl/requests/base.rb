@@ -41,6 +41,14 @@ module DeepL
         [request, response]
       end
 
+      def get
+        request = Net::HTTP::Get.new(uri.request_uri)
+        response = http.request(request)
+
+        validate_response!(request, response)
+        [request, response]
+      end
+
       def http
         @http ||= begin
           http = Net::HTTP.new(uri.host, uri.port)

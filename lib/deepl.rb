@@ -12,10 +12,12 @@ require 'deepl/exceptions/limit_exceeded'
 # -- Requests
 require 'deepl/requests/base'
 require 'deepl/requests/translate'
+require 'deepl/requests/usage'
 
 # -- Responses and resources
 require 'deepl/resources/base'
 require 'deepl/resources/text'
+require 'deepl/resources/usage'
 
 # -- Other wrappers
 require 'deepl/api'
@@ -34,6 +36,11 @@ module DeepL
   def translate(text, source_lang, target_lang, options = {})
     configure if @configuration.nil?
     Requests::Translate.new(api, text, source_lang, target_lang, options).request
+  end
+
+  def usage(options = {})
+    configure if @configuration.nil?
+    Requests::Usage.new(api, options).request
   end
 
   # -- Configuration
