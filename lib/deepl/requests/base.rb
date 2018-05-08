@@ -16,13 +16,33 @@ module DeepL
 
       private
 
+      def option?(name)
+        options.key?(name.to_s) || options.key?(name.to_sym)
+      end
+
       def option(name)
         options[name.to_s] || options[name.to_sym]
+      end
+
+      def set_option(name, value)
+        if options.key?(name.to_sym)
+          options[name.to_sym] = value
+        else
+          options[name.to_s] = value
+        end
       end
 
       def post(payload)
         request = Net::HTTP::Post.new(uri.request_uri)
         request.set_form_data(payload.reject { |_, v| v.nil? })
+        response = http.request(request)
+
+        validate_response!(request, response)
+        [request, response]
+      end
+
+      def get
+        request = Net::HTTP::Get.new(uri.request_uri)
         response = http.request(request)
 
         validate_response!(request, response)
