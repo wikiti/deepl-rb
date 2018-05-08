@@ -2,7 +2,7 @@
 
 # DeepL for ruby
 
-A simple ruby wrapper for the [DeepL translation API (v1)](https://www.deepl.com/docs/api-reference.html).
+A simple ruby wrapper for the [DeepL translation API (v1)](https://www.deepl.com/api.html).
 
 ## Installation
 
@@ -90,13 +90,34 @@ Here's a list of available language codes:
 | `NL`            | Dutch
 | `PL`            | Polish
 
-You can also use custom query parameters, like `tag_handling`:
+You can also use custom query parameters, like `tag_handling` or `split_sentences`:
 
 ```rb
-translation = DeepL.translate '<p>A sample</p>', 'EN', 'ES', tag_handling: 'xml'
+translation = DeepL.translate '<p>A sample</p>', 'EN', 'ES',
+                              tag_handling: 'xml', split_sentences: false
 
 puts translation.text
 # => "<p>Una muestra</p>"
+```
+
+The following parameters will be automatically converted:
+
+| Parameter             | Conversion
+| --------------------- | ---------------
+| `preserve_formatting` | Convertes `false` to `'0'` and `true` to `'1'`
+| `split_sentences`     | Convertes `false` to `'0'` and `true` to `'1'`
+
+### Usage
+
+To check current API usage, use:
+
+```rb
+usage = DeepL.usage
+
+puts usage.character_count
+# => 180118
+puts usage.character_limit
+# => 1250000
 ```
 
 ### Handle exceptions
