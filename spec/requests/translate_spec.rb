@@ -14,6 +14,40 @@ describe DeepL::Requests::Translate do
       end
     end
 
+    context 'when using `non_splitting_tags` options' do
+      it 'should work with a nil values' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, non_splitting_tags: nil)
+        expect(request.options[:non_splitting_tags]).to eq(nil)
+      end
+
+      it 'should work with a blank list' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, non_splitting_tags: '')
+        expect(request.options[:non_splitting_tags]).to eq('')
+      end
+
+      it 'should work with a comma-separated list' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, non_splitting_tags: 'p, strong, span')
+        expect(request.options[:non_splitting_tags]).to eq('p, strong, span')
+      end
+    end
+
+    context 'when using `ignore_tags` options' do
+      it 'should work with a nil values' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, ignore_tags: nil)
+        expect(request.options[:ignore_tags]).to eq(nil)
+      end
+
+      it 'should work with a blank list' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, ignore_tags: '')
+        expect(request.options[:ignore_tags]).to eq('')
+      end
+
+      it 'should work with a comma-separated list' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, ignore_tags: 'p, strong, span')
+        expect(request.options[:ignore_tags]).to eq('p, strong, span')
+      end
+    end
+
     context 'when using `split_sentences` options' do
       it 'should convert `true` to `1`' do
         request = DeepL::Requests::Translate.new(api, nil, nil, nil, split_sentences: true)
@@ -97,6 +131,19 @@ describe DeepL::Requests::Translate do
 
         expect(text).to be_a(DeepL::Resources::Text)
         expect(text.text).to eq('<p>Texto de muestra</p>')
+        expect(text.detected_source_language).to eq('EN')
+      end
+    end
+
+    context 'When performing a valid request and passing a variable' do
+      let(:text) { 'Welcome and <code>Hello great World</code> Good Morning!' }
+      let(:ignore_tags) { 'code, span' }
+
+      it 'should return a text object' do
+        text = subject.request
+
+        expect(text).to be_a(DeepL::Resources::Text)
+        expect(text.text).to eq('Bienvenido y <code>Hello great World</code> Buenos días!')
         expect(text.detected_source_language).to eq('EN')
       end
     end

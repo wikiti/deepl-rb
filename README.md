@@ -90,11 +90,12 @@ Here's a list of available language codes:
 | `NL`            | Dutch
 | `PL`            | Polish
 
-You can also use custom query parameters, like `tag_handling` or `split_sentences`:
+You can also use custom query parameters, like `tag_handling`, `split_sentences`, `non_splitting_tags` or `ignore_tags`:
 
 ```rb
 translation = DeepL.translate '<p>A sample</p>', 'EN', 'ES',
-                              tag_handling: 'xml', split_sentences: false
+                              tag_handling: 'xml', split_sentences: false,
+                              non_splitting_tags: 'h1', ignore_tags: 'code, pre'
 
 puts translation.text
 # => "<p>Una muestra</p>"
@@ -106,6 +107,8 @@ The following parameters will be automatically converted:
 | --------------------- | ---------------
 | `preserve_formatting` | Convertes `false` to `'0'` and `true` to `'1'`
 | `split_sentences`     | Convertes `false` to `'0'` and `true` to `'1'`
+| `non_splitting_tags`  | no conversion
+| `ignore_tags`         | no conversion
 
 ### Usage
 

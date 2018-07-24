@@ -6,7 +6,7 @@ module DeepL
         preserve_formatting: { true => '1', false => '0' }
       }.freeze
 
-      attr_reader :text, :source_lang, :target_lang
+      attr_reader :text, :source_lang, :target_lang, :ignore_tags, :non_splitting_tags
 
       def initialize(api, text, source_lang, target_lang, options = {})
         super(api, options)
