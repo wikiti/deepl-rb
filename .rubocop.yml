@@ -11,7 +11,7 @@ Metrics/BlockLength:
   - "**/*_spec.rb"
 
 Metrics/LineLength:
-  Max: 120
+  Max: 100
 
 Style/Documentation:
   Enabled: false

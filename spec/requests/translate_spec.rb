@@ -1,16 +1,74 @@
 require 'spec_helper'
 
 describe DeepL::Requests::Translate do
+  let(:tags_str) { 'p, strong, span' }
+  let(:tags_array) { %w[p strong span] }
+
   let(:api) { build_deepl_api }
   let(:text) { 'Sample text' }
   let(:source_lang) { 'EN' }
   let(:target_lang) { 'ES' }
-  subject { DeepL::Requests::Translate.new(api, text, source_lang, target_lang) }
+  let(:options) { {} }
+  subject { DeepL::Requests::Translate.new(api, text, source_lang, target_lang, options) }
 
   describe '#initialize' do
     context 'When building a request' do
       it 'should create a request object' do
         expect(subject).to be_a(DeepL::Requests::Translate)
+      end
+    end
+
+    context 'when using `non_splitting_tags` options' do
+      it 'should work with a nil values' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, non_splitting_tags: nil)
+        expect(request.options[:non_splitting_tags]).to eq(nil)
+      end
+
+      it 'should work with a blank list' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, non_splitting_tags: '')
+        expect(request.options[:non_splitting_tags]).to eq('')
+      end
+
+      it 'should work with a comma-separated list' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, non_splitting_tags: tags_str)
+        expect(request.options[:non_splitting_tags]).to eq(tags_str)
+      end
+
+      it 'should convert arrays to strings' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, non_splitting_tags: tags_array)
+        expect(request.options[:non_splitting_tags]).to eq(tags_str)
+      end
+
+      it 'should leave strings as they are' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, non_splitting_tags: tags_str)
+        expect(request.options[:non_splitting_tags]).to eq(tags_str)
+      end
+    end
+
+    context 'when using `ignore_tags` options' do
+      it 'should work with a nil values' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, ignore_tags: nil)
+        expect(request.options[:ignore_tags]).to eq(nil)
+      end
+
+      it 'should work with a blank list' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, ignore_tags: '')
+        expect(request.options[:ignore_tags]).to eq('')
+      end
+
+      it 'should work with a comma-separated list' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, ignore_tags: tags_str)
+        expect(request.options[:ignore_tags]).to eq(tags_str)
+      end
+
+      it 'should convert arrays to strings' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, ignore_tags: tags_array)
+        expect(request.options[:ignore_tags]).to eq(tags_str)
+      end
+
+      it 'should leave strings as they are' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, ignore_tags: tags_str)
+        expect(request.options[:ignore_tags]).to eq(tags_str)
       end
     end
 
@@ -97,6 +155,19 @@ describe DeepL::Requests::Translate do
 
         expect(text).to be_a(DeepL::Resources::Text)
         expect(text.text).to eq('<p>Texto de muestra</p>')
+        expect(text.detected_source_language).to eq('EN')
+      end
+    end
+
+    context 'When performing a valid request and passing a variable' do
+      let(:text) { 'Welcome and <code>Hello great World</code> Good Morning!' }
+      let(:options) { { ignore_tags: 'code, span' } }
+
+      it 'should return a text object' do
+        text = subject.request
+
+        expect(text).to be_a(DeepL::Resources::Text)
+        expect(text.text).to eq('Bienvenido y <code>Hello great World</code> Buenos días!')
         expect(text.detected_source_language).to eq('EN')
       end
     end
