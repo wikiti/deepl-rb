@@ -1,9 +1,13 @@
 module DeepL
   module Requests
     class Translate < Base
+      BOOLEAN_CONVERSION = { true => '1', false => '0' }.freeze
+      ARRAY_CONVERSION = ->(value) { value.is_a?(Array) ? value.join(', ') : value }.freeze
       OPTIONS_CONVERSIONS = {
-        split_sentences: { true => '1', false => '0' },
-        preserve_formatting: { true => '1', false => '0' }
+        split_sentences: BOOLEAN_CONVERSION,
+        preserve_formatting: BOOLEAN_CONVERSION,
+        non_splitting_tags: ARRAY_CONVERSION,
+        ignore_tags: ARRAY_CONVERSION
       }.freeze
 
       attr_reader :text, :source_lang, :target_lang, :ignore_tags, :non_splitting_tags

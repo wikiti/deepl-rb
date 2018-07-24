@@ -95,7 +95,7 @@ You can also use custom query parameters, like `tag_handling`, `split_sentences`
 ```rb
 translation = DeepL.translate '<p>A sample</p>', 'EN', 'ES',
                               tag_handling: 'xml', split_sentences: false,
-                              non_splitting_tags: 'h1', ignore_tags: 'code, pre'
+                              non_splitting_tags: 'h1', ignore_tags: %w[code pre]
 
 puts translation.text
 # => "<p>Una muestra</p>"
@@ -105,10 +105,10 @@ The following parameters will be automatically converted:
 
 | Parameter             | Conversion
 | --------------------- | ---------------
-| `preserve_formatting` | Convertes `false` to `'0'` and `true` to `'1'`
-| `split_sentences`     | Convertes `false` to `'0'` and `true` to `'1'`
-| `non_splitting_tags`  | no conversion
-| `ignore_tags`         | no conversion
+| `preserve_formatting` | Converts `false` to `'0'` and `true` to `'1'`
+| `split_sentences`     | Converts `false` to `'0'` and `true` to `'1'`
+| `non_splitting_tags`  | Converts arrays to strings joining by commas
+| `ignore_tags`         | Converts arrays to strings joining by commas
 
 ### Usage
 
