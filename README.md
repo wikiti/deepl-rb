@@ -148,6 +148,11 @@ end
 
 ```
 
+## Usage with Ruby on Rails
+
+The [`i18n-tasks`](https://github.com/glebm/i18n-tasks) gem helps you find and manage missing and unused translations.
+`deepl-rb` is used as the backend service to fetch translations form DeepL API.
+
 ## Development
 
 Clone the repository, and install its dependencies:
