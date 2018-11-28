@@ -2,7 +2,7 @@
 
 # DeepL for ruby
 
-A simple ruby wrapper for the [DeepL translation API (v1)](https://www.deepl.com/api.html).
+A simple ruby wrapper for the [DeepL translation API (v2)](https://www.deepl.com/api.html).
 
 ## Installation
 
@@ -35,12 +35,13 @@ DeepL.configure do |config|
 end
 ```
 
-You can also configure the api host:
+You can also configure the API host and the API version:
 
 ```rb
 DeepL.configure do |config|
   config.auth_key = 'your-api-token'
   config.host = 'https://test-api.deepl.com' # Default value is 'https://api.deepl.com'
+  config.version = 'v1' # Default value is 'v2'
 end
 ```
 

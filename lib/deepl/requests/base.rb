@@ -1,8 +1,6 @@
 module DeepL
   module Requests
     class Base
-      API_VERSION = 'v2'.freeze
-
       attr_reader :api, :response, :options
 
       def initialize(api, options = {})
@@ -73,7 +71,7 @@ module DeepL
       end
 
       def url
-        "#{host}/#{API_VERSION}/#{path}"
+        "#{host}/#{api.configuration.version}/#{path}"
       end
 
       def uri

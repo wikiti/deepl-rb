@@ -1,6 +1,6 @@
 module DeepL
   class Configuration
-    ATTRIBUTES = %i[auth_key host].freeze
+    ATTRIBUTES = %i[auth_key host version].freeze
 
     attr_accessor(*ATTRIBUTES)
 
@@ -8,6 +8,7 @@ module DeepL
       data.each { |key, value| send("#{key}=", value) }
       @auth_key ||= ENV['DEEPL_AUTH_KEY']
       @host ||= 'https://api.deepl.com'
+      @version ||= 'v2'
     end
 
     def validate!

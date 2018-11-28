@@ -15,12 +15,13 @@ describe DeepL do
 
     context 'When providing a valid configuration' do
       let(:configuration) do
-        DeepL::Configuration.new(auth_key: 'VALID', host: 'http://www.example.org')
+        DeepL::Configuration.new(auth_key: 'VALID', host: 'http://www.example.org', version: 'v1')
       end
       before do
         subject.configure do |config|
           config.auth_key = configuration.auth_key
           config.host = configuration.host
+          config.version = configuration.version
         end
       end
 

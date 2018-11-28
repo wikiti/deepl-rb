@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.deepl.com/v1/usage?auth_key=VALID_TOKEN
+    uri: https://api.deepl.com/v2/usage?auth_key=VALID_TOKEN
     body:
       encoding: US-ASCII
       string: ''

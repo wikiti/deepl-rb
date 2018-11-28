@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.deepl.com/v1/translate?auth_key=VALID_TOKEN
+    uri: https://api.deepl.com/v2/translate?auth_key=VALID_TOKEN
     body:
       encoding: US-ASCII
       string: text=Sample+text&source_lang=EN&target_lang=ES
@@ -40,7 +40,7 @@ http_interactions:
   recorded_at: Tue, 08 May 2018 16:31:34 GMT
 - request:
     method: post
-    uri: https://api.deepl.com/v1/translate?auth_key=VALID_TOKEN
+    uri: https://api.deepl.com/v2/translate?auth_key=VALID_TOKEN
     body:
       encoding: US-ASCII
       string: text=Sample&text=Word&source_lang=EN&target_lang=ES
@@ -77,7 +77,7 @@ http_interactions:
   recorded_at: Tue, 08 May 2018 16:31:35 GMT
 - request:
     method: post
-    uri: https://api.deepl.com/v1/translate?auth_key=VALID_TOKEN
+    uri: https://api.deepl.com/v2/translate?auth_key=VALID_TOKEN
     body:
       encoding: US-ASCII
       string: text=%3Cp%3ESample+text%3C%2Fp%3E&source_lang=EN&target_lang=ES
@@ -115,7 +115,7 @@ http_interactions:
   recorded_at: Tue, 08 May 2018 16:31:36 GMT
 - request:
     method: post
-    uri: https://api.deepl.com/v1/translate?auth_key=invalid
+    uri: https://api.deepl.com/v2/translate?auth_key=invalid
     body:
       encoding: US-ASCII
       string: text=Sample+text&source_lang=EN&target_lang=ES
@@ -148,7 +148,7 @@ http_interactions:
   recorded_at: Tue, 08 May 2018 16:31:37 GMT
 - request:
     method: post
-    uri: https://api.deepl.com/v1/translate?auth_key=VALID_TOKEN
+    uri: https://api.deepl.com/v2/translate?auth_key=VALID_TOKEN
     body:
       encoding: US-ASCII
       string: source_lang=EN&target_lang=ES
@@ -181,7 +181,7 @@ http_interactions:
   recorded_at: Tue, 08 May 2018 16:31:37 GMT
 - request:
     method: post
-    uri: https://api.deepl.com/v1/translate?auth_key=VALID_TOKEN
+    uri: https://api.deepl.com/v2/translate?auth_key=VALID_TOKEN
     body:
       encoding: US-ASCII
       string: text=Sample+text&source_lang=EN
@@ -214,7 +214,7 @@ http_interactions:
   recorded_at: Tue, 08 May 2018 16:31:37 GMT
 - request:
     method: post
-    uri: https://api.deepl.com/v1/translate?auth_key=VALID_TOKEN&ignore_tags=code,%20span
+    uri: https://api.deepl.com/v2/translate?auth_key=VALID_TOKEN&ignore_tags=code,%20span
     body:
       encoding: US-ASCII
       string: text=Welcome+and+%3Ccode%3EHello+great+World%3C%2Fcode%3E+Good+Morning%21&source_lang=EN&target_lang=ES
