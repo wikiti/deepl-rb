@@ -1,7 +1,7 @@
 module DeepL
   module Requests
     class Base
-      API_VERSION = 'v1'.freeze
+      API_VERSION = 'v2'.freeze
 
       attr_reader :api, :response, :options
 
