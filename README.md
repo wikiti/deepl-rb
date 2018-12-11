@@ -151,6 +151,29 @@ end
 
 ```
 
+## Integrations
+
+### Ruby on Rails
+
+You may use this gem as a standalone service by creating an initializer on your
+`config/initializers` folder with your DeepL configuration. For example:
+
+```rb
+# config/initializers/deepl.rb
+DeepL.configure do |config|
+  # Your configuration goes here
+end
+```
+
+Since the DeepL service is defined globally, you can use service anywhere in your code
+(controllers, models, views, jobs, plain ruby objects... you name it).
+
+### i18n-tasks
+
+You may also take a look at [`i18n-tasks`](https://github.com/glebm/i18n-tasks), which is a gem
+that helps you find and manage missing and unused translations. `deepl-rb` is used as one the
+backend services to translate content.
+
 ## Development
 
 Clone the repository, and install its dependencies:
