@@ -87,9 +87,11 @@ Here's a list of available language codes:
 | `DE`            | German
 | `FR`            | French
 | `ES`            | Spanish
+| `PT`            | Portuguese
 | `IT`            | Italian
 | `NL`            | Dutch
 | `PL`            | Polish
+| `RU`            | Russian
 
 You can also use custom query parameters, like `tag_handling`, `split_sentences`, `non_splitting_tags` or `ignore_tags`:
 
