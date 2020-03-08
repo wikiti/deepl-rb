@@ -130,11 +130,12 @@ puts usage.character_limit
 
 You can capture and process exceptions that may be raised during API calls. These are all the possible exceptions:
 
-| Exception class | Descripcion |
+| Exception class | Description |
 | --------------- | ----------- |
-| `DeepL::Exceptions::AuthorizationFailed` | The authorization process has failed. Check your auth_key value. |
+| `DeepL::Exceptions::AuthorizationFailed` | The authorization process has failed. Check your `auth_key` value. |
 | `DeepL::Exceptions::BadRequest` | Something is wrong in your request. Check `exception.message` for more information. |
 | `DeepL::Exceptions::LimitExceeded` | You've reached the API's call limit. |
+| `DeepL::Exceptions::QuotaExceeded` | You've reached the API's character limit. |
 | `DeepL::Exceptions::RequestError` | An unkown request error. Check `exception.response` and `exception.request` for more information. |
 
 An exampling of handling a generic exception:
@@ -148,7 +149,6 @@ rescue DeepL::Exceptions::RequestError => e
   puts "Response body: #{e.response.body}"
   puts "Request body: #{e.request.body}"
 end
-
 ```
 
 ## Integrations
@@ -166,7 +166,7 @@ end
 ```
 
 Since the DeepL service is defined globally, you can use service anywhere in your code
-(controllers, models, views, jobs, plain ruby objects... you name it).
+(controllers, models, views, jobs, plain ruby objects… you name it).
 
 ### i18n-tasks
 
