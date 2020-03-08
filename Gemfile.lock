@@ -56,7 +56,7 @@ GEM
       ast (~> 2.3)
     powerpack (0.1.1)
     public_suffix (3.0.1)
-    rack (1.6.8)
+    rack (2.2.2)
     rainbow (3.0.0)
     rake (12.3.0)
     rdoc (5.1.0)
