@@ -9,7 +9,7 @@ module DeepL
       end
 
       def message
-        'Unkown error.'
+        'Unknown error.'
       end
     end
   end
