@@ -171,7 +171,7 @@ Since the DeepL service is defined globally, you can use service anywhere in you
 ### i18n-tasks
 
 You may also take a look at [`i18n-tasks`](https://github.com/glebm/i18n-tasks), which is a gem
-that helps you find and manage missing and unused translations. `deepl-rb` is used as one the
+that helps you find and manage missing and unused translations. `deepl-rb` is used as one of the
 backend services to translate content.
 
 ## Development
