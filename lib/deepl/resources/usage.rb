@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DeepL
   module Resources
     class Usage < Base

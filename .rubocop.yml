@@ -2,6 +2,7 @@
 
 AllCops:
   DisplayCopNames: true
+  NewCops: enable
   Exclude:
   - deepl-rb.gemspec
   - vendor/**/*

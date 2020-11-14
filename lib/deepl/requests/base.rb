@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DeepL
   module Requests
     class Base
@@ -32,7 +34,7 @@ module DeepL
 
       def post(payload)
         request = Net::HTTP::Post.new(uri.request_uri)
-        request.set_form_data(payload.reject { |_, v| v.nil? })
+        request.set_form_data(payload.compact)
         response = http.request(request)
 
         validate_response!(request, response)

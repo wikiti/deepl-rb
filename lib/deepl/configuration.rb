@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DeepL
   class Configuration
     ATTRIBUTES = %i[auth_key host version].freeze

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DeepL
   module Requests
     class Translate < Base
@@ -31,6 +33,7 @@ module DeepL
       def tweak_parameters!
         OPTIONS_CONVERSIONS.each do |param, converter|
           next unless option?(param) && converter[option(param)]
+
           set_option(param, converter[option(param)])
         end
       end
