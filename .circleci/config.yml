@@ -3,25 +3,13 @@ jobs:
   build:
     working_directory: ~/deepl-rb
     docker:
-    - image: circleci/ruby:2.1
+    - image: circleci/ruby:2.7
     steps:
     - checkout
-
-    # Restore bundle cache
-    - type: cache-restore
-      name: Restore bundle cache
-      key: deepl-rb-bundle-{{ checksum "Gemfile.lock" }}
 
     - run:
         name: Bundle Install
         command: bundle install --path vendor/bundle
-
-    # Store bundle cache
-    - type: cache-save
-      name: Store bundle cache
-      key: deepl-rb-bundle-{{ checksum "Gemfile.lock" }}
-      paths:
-      - vendor/bundle
 
     # Run rspec
     - type: shell
