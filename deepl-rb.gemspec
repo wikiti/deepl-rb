@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib".freeze]
   s.authors = ["Daniel Herzog".freeze]
-  s.date = "2020-06-18"
+  s.date = "2020-11-09"
   s.description = "A simple ruby wrapper for the DeepL translation API (v1). For more information, check this: https://www.deepl.com/docs/api-reference.html".freeze
   s.email = "info@danielherzog.es".freeze
   s.extra_rdoc_files = [
@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
     ".circleci/config.yml",
     ".rubocop.yml",
     "Gemfile",
-    "Gemfile.lock",
     "LICENSE.md",
     "README.md",
     "Rakefile",
@@ -58,17 +57,15 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "http://github.com/wikiti/deepl-rb".freeze
   s.licenses = ["MIT".freeze]
-  s.rubygems_version = "2.6.14".freeze
+  s.rubygems_version = "3.1.2".freeze
   s.summary = "A simple ruby wrapper for the DeepL API".freeze
 
   if s.respond_to? :specification_version then
     s.specification_version = 4
+  end
 
-    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<juwelier>.freeze, [">= 0"])
-    else
-      s.add_dependency(%q<juwelier>.freeze, [">= 0"])
-    end
+  if s.respond_to? :add_runtime_dependency then
+    s.add_development_dependency(%q<juwelier>.freeze, [">= 0"])
   else
     s.add_dependency(%q<juwelier>.freeze, [">= 0"])
   end
