@@ -2,8 +2,8 @@
 
 require 'spec_helper'
 
-describe DeepL::Resources::Text do
-  subject { described_class.new('Target', 'es', nil, nil) }
+describe DeepL::Resources::Language do
+  subject { described_class.new('EN', 'English', nil, nil) }
 
   describe '#initialize' do
     context 'When building a basic object' do
@@ -12,8 +12,8 @@ describe DeepL::Resources::Text do
       end
 
       it 'should assign the attributes' do
-        expect(subject.text).to eq('Target')
-        expect(subject.detected_source_language).to eq('es')
+        expect(subject.code).to eq('EN')
+        expect(subject.name).to eq('English')
       end
     end
   end

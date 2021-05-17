@@ -27,5 +27,5 @@ end
 
 # General helpers
 def build_deepl_api
-  DeepL::API.new(DeepL::Configuration.new)
+  DeepL::API.new(DeepL::Configuration.new(host: 'https://api-free.deepl.com'))
 end

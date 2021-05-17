@@ -151,6 +151,7 @@ describe DeepL::Requests::Translate do
 
     context 'When performing a valid request with tag handling' do
       let(:text) { '<p>Sample text</p>' }
+      let(:options) { { tag_handling: 'xml' } }
 
       it 'should return a text object' do
         text = subject.request
@@ -163,13 +164,13 @@ describe DeepL::Requests::Translate do
 
     context 'When performing a valid request and passing a variable' do
       let(:text) { 'Welcome and <code>Hello great World</code> Good Morning!' }
-      let(:options) { { ignore_tags: 'code, span' } }
+      let(:options) { { tag_handling: 'xml', ignore_tags: 'code,span' } }
 
       it 'should return a text object' do
         text = subject.request
 
         expect(text).to be_a(DeepL::Resources::Text)
-        expect(text.text).to eq('Bienvenido y <code>Hello great World</code> Buenos días!')
+        expect(text.text).to eq('Bienvenido y <code>Hello great World</code> ¡Buenos días!')
         expect(text.detected_source_language).to eq('EN')
       end
     end
@@ -200,7 +201,7 @@ describe DeepL::Requests::Translate do
         let(:target_lang) { nil }
 
         it 'should raise a bad request error' do
-          message = "Parameter 'target_lang' not specified."
+          message = "Value for 'target_lang' not supported."
           expect { subject.request }.to raise_error(DeepL::Exceptions::BadRequest, message)
         end
       end

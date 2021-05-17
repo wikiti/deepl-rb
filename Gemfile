@@ -7,6 +7,10 @@ group :development do
   gem 'juwelier'
 end
 
+group :test, :development do
+  gem 'byebug', require: 'byebug'
+end
+
 group :test do
   # Test
   gem 'codecov', require: false

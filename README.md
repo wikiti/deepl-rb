@@ -40,10 +40,38 @@ You can also configure the API host and the API version:
 ```rb
 DeepL.configure do |config|
   config.auth_key = 'your-api-token'
-  config.host = 'https://test-api.deepl.com' # Default value is 'https://api.deepl.com'
+  config.host = 'https://api-free.deepl.com' # Default value is 'https://api.deepl.com'
   config.version = 'v1' # Default value is 'v2'
 end
 ```
+
+### Available languages
+
+Available languages can be retrieved via API:
+
+```rb
+languages = DeepL.languages
+
+puts languages.class
+# => Array
+puts languages.first.class
+# => DeepL::Resources::Language
+puts "#{languages.first.code} -> #{languages.first.name}"
+# => "ES -> Spanish"
+```
+
+Note that source and target languages may be different, which can be retrieved by using the `type`
+option:
+
+```rb
+puts DeepL.languages(type: :source).count
+# => 24
+puts DeepL.languages(type: :target).count
+# => 26
+```
+
+All languages are also defined on the
+[official API documentation](https://www.deepl.com/docs-api/translating-text/)
 
 ### Translate
 
@@ -79,20 +107,6 @@ puts translations.first.class
 # => DeepL::Resources::Text
 ```
 
-Here's a list of available language codes:
-
-| Language code   | Language
-| --------------- | ---------------
-| `EN`            | English
-| `DE`            | German
-| `FR`            | French
-| `ES`            | Spanish
-| `PT`            | Portuguese
-| `IT`            | Italian
-| `NL`            | Dutch
-| `PL`            | Polish
-| `RU`            | Russian
-
 You can also use custom query parameters, like `tag_handling`, `split_sentences`, `non_splitting_tags` or `ignore_tags`:
 
 ```rb
@@ -113,7 +127,7 @@ The following parameters will be automatically converted:
 | `non_splitting_tags`  | Converts arrays to strings joining by commas
 | `ignore_tags`         | Converts arrays to strings joining by commas
 
-### Usage
+### Monitor usage
 
 To check current API usage, use:
 
