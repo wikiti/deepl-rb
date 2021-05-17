@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.deepl.com/v2/translate?auth_key=VALID_TOKEN&param=fake
+    uri: https://api-free.deepl.com/v2/translate?auth_key=VALID_TOKEN&param=fake
     body:
       encoding: US-ASCII
       string: text=Sample&source_lang=EN&target_lang=ES
@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 08 May 2018 16:31:34 GMT
+      - Mon, 17 May 2021 14:42:56 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -35,6 +35,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"translations":[{"detected_source_language":"EN","text":"Muestra"}]}'
-    http_version:
-  recorded_at: Tue, 08 May 2018 16:31:33 GMT
-recorded_with: VCR 4.0.0
+  recorded_at: Mon, 17 May 2021 14:42:56 GMT
+recorded_with: VCR 6.0.0

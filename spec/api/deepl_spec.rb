@@ -47,6 +47,7 @@ describe DeepL do
     let(:options) { { param: 'fake' } }
 
     around do |example|
+      subject.configure { |config| config.host = 'https://api-free.deepl.com' }
       VCR.use_cassette('deepl_translate') { example.call }
     end
 
@@ -65,6 +66,7 @@ describe DeepL do
     let(:options) { {} }
 
     around do |example|
+      subject.configure { |config| config.host = 'https://api-free.deepl.com' }
       VCR.use_cassette('deepl_usage') { example.call }
     end
 
@@ -75,6 +77,26 @@ describe DeepL do
 
         usage = subject.usage(options)
         expect(usage).to be_a(DeepL::Resources::Usage)
+      end
+    end
+  end
+
+  describe '#languages' do
+    let(:options) { { type: :target } }
+
+    around do |example|
+      subject.configure { |config| config.host = 'https://api-free.deepl.com' }
+      VCR.use_cassette('deepl_languages') { example.call }
+    end
+
+    context 'When checking languages' do
+      it 'should create and call a request object' do
+        expect(DeepL::Requests::Languages).to receive(:new)
+          .with(subject.api, options).and_call_original
+
+        languages = subject.languages(options)
+        expect(languages).to be_an(Array)
+        expect(languages.all? { |l| l.is_a?(DeepL::Resources::Language) }).to be_truthy
       end
     end
   end

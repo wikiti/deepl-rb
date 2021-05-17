@@ -16,7 +16,7 @@ describe DeepL::Configuration do
     end
 
     context 'When using custom configuration attributes' do
-      let(:attributes) { { auth_key: 'SAMPLE', host: 'http://www.example.org', version: 'v1' } }
+      let(:attributes) { { auth_key: 'SAMPLE', host: 'https://api-free.deepl.com', version: 'v1' } }
 
       it 'should use custom attributes' do
         expect(subject.auth_key).to eq(attributes[:auth_key])
