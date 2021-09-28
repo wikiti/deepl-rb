@@ -286,4 +286,40 @@ http_interactions:
       string: !binary |-
         eyJ0cmFuc2xhdGlvbnMiOlt7ImRldGVjdGVkX3NvdXJjZV9sYW5ndWFnZSI6IkVOIiwidGV4dCI6IkJpZW52ZW5pZG8geSA8Y29kZT5IZWxsbyBncmVhdCBXb3JsZDwvY29kZT4gwqFCdWVub3MgZMOtYXMhIn1dfQ==
   recorded_at: Mon, 17 May 2021 14:20:56 GMT
+- request:
+    method: post
+    uri: https://api-free.deepl.com/v2/translate?auth_key=VALID_TOKEN&glossary_id=123
+    body:
+      encoding: US-ASCII
+      string: text=%3Cp%3ESample+text%3C%2Fp%3E&source_lang=EN&target_lang=ES
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 28 Sep 2021 17:20:52 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '51'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+    body:
+      encoding: UTF-8
+      string: '{"message":"Value for ''termbaseId'' not supported."}'
+  recorded_at: Tue, 28 Sep 2021 17:20:52 GMT
 recorded_with: VCR 6.0.0

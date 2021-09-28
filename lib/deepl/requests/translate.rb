@@ -8,6 +8,7 @@ module DeepL
       OPTIONS_CONVERSIONS = {
         split_sentences: BOOLEAN_CONVERSION,
         preserve_formatting: BOOLEAN_CONVERSION,
+        outline_detection: BOOLEAN_CONVERSION,
         non_splitting_tags: ARRAY_CONVERSION,
         ignore_tags: ARRAY_CONVERSION
       }.freeze

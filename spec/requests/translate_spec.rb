@@ -90,6 +90,11 @@ describe DeepL::Requests::Translate do
         expect(request.options[:split_sentences]).to eq('0')
       end
 
+      it 'should leave `nonewlines` as is' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, split_sentences: 'nonewlines')
+        expect(request.options[:split_sentences]).to eq('nonewlines')
+      end
+
       it 'should leave `1` as is' do
         request = DeepL::Requests::Translate.new(api, nil, nil, nil, split_sentences: '1')
         expect(request.options[:split_sentences]).to eq('1')
@@ -115,6 +120,52 @@ describe DeepL::Requests::Translate do
       it 'should leave `1` as is' do
         request = DeepL::Requests::Translate.new(api, nil, nil, nil, preserve_formatting: '1')
         expect(request.options[:preserve_formatting]).to eq('1')
+      end
+    end
+
+    context 'when using `outline_detection` options' do
+      it 'should convert `true` to `1`' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, outline_detection: true)
+        expect(request.options[:outline_detection]).to eq('1')
+      end
+
+      it 'should convert `false` to `0`' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, outline_detection: false)
+        expect(request.options[:outline_detection]).to eq('0')
+      end
+
+      it 'should leave `0` as is' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, outline_detection: '0')
+        expect(request.options[:outline_detection]).to eq('0')
+      end
+
+      it 'should leave `1` as is' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, outline_detection: '1')
+        expect(request.options[:outline_detection]).to eq('1')
+      end
+    end
+
+    context 'when using `glossary_id` options' do
+      it 'should work with a nil values' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, glossary_id: nil)
+        expect(request.options[:glossary_id]).to eq(nil)
+      end
+
+      it 'should work with a string' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, glossary_id: 'sample_id')
+        expect(request.options[:glossary_id]).to eq('sample_id')
+      end
+    end
+
+    context 'when using `formality` options' do
+      it 'should work with a nil values' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, formality: nil)
+        expect(request.options[:formality]).to eq(nil)
+      end
+
+      it 'should work with a string' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, formality: 'more')
+        expect(request.options[:formality]).to eq('more')
       end
     end
   end

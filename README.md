@@ -124,8 +124,11 @@ The following parameters will be automatically converted:
 | --------------------- | ---------------
 | `preserve_formatting` | Converts `false` to `'0'` and `true` to `'1'`
 | `split_sentences`     | Converts `false` to `'0'` and `true` to `'1'`
+| `outline_detection`   | Converts `false` to `'0'` and `true` to `'1'`
 | `non_splitting_tags`  | Converts arrays to strings joining by commas
 | `ignore_tags`         | Converts arrays to strings joining by commas
+| `formality`           | No conversion applied
+| `glossary_id`         | No conversion applied
 
 ### Monitor usage
 
