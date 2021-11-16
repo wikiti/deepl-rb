@@ -35,6 +35,7 @@ module DeepL
       def post(payload)
         request = Net::HTTP::Post.new(uri.request_uri)
         request.set_form_data(payload.compact)
+        request['Authorization'] = "DeepL-Auth-Key #{ENV['DEEPL_AUTH_KEY']}"
         response = http.request(request)
 
         validate_response!(request, response)

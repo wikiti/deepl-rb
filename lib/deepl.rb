@@ -14,12 +14,14 @@ require 'deepl/exceptions/quota_exceeded'
 
 # -- Requests
 require 'deepl/requests/base'
+require 'deepl/requests/glossary'
 require 'deepl/requests/languages'
 require 'deepl/requests/translate'
 require 'deepl/requests/usage'
 
 # -- Responses and resources
 require 'deepl/resources/base'
+require 'deepl/resources/glossary'
 require 'deepl/resources/language'
 require 'deepl/resources/text'
 require 'deepl/resources/usage'
@@ -36,6 +38,11 @@ module DeepL
 
   def api
     @api ||= API.new(configuration)
+  end
+
+  def glossary(name, entries, source_lang, target_lang, options = {})
+    configure if @configuration.nil?
+    Requests::Glossary.new(api, name, entries, source_lang, target_lang, options).request
   end
 
   def languages(options = {})

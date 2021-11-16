@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api-free.deepl.com/v2/glossaries?auth_key=VALID_TOKEN&param=fake
+    body:
+      encoding: US-ASCII
+      string: name=Sample&entries=Hello%21%09Guten+Tag%21&source_lang=EN&target_lang=ES&entries_format=tsv
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Authorization:
+      - DeepL-Auth-Key VALID_TOKEN
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 16 Nov 2021 10:33:20 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"glossary_id":"658bb108-1600-4aed-bc68-80705e797410","name":"Sample","ready":true,"source_lang":"en","target_lang":"es","creation_time":"2021-11-16T10:33:20.519322+00:00","entry_count":1}'
+  recorded_at: Tue, 16 Nov 2021 10:33:20 GMT
+recorded_with: VCR 6.0.0

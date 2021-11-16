@@ -8,7 +8,7 @@ group :development do
 end
 
 group :test, :development do
-  gem 'byebug', require: 'byebug'
+  gem 'pry-byebug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :test do
