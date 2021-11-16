@@ -40,6 +40,29 @@ describe DeepL do
     end
   end
 
+  describe '#glossary' do
+    let(:name) { 'Sample' }
+    let(:entries) { 'Hello!	Guten Tag!' }
+    let(:source_lang) { 'EN' }
+    let(:target_lang) { 'ES' }
+    let(:options) { { param: 'fake' } }
+
+    around do |example|
+      subject.configure { |config| config.host = 'https://api-free.deepl.com' }
+      VCR.use_cassette('deepl_glossary') { example.call }
+    end
+
+    context 'When creating a glossary' do
+      it 'should create and call a request object' do
+        expect(DeepL::Requests::Glossary).to receive(:new)
+          .with(subject.api, name, entries, source_lang, target_lang, options).and_call_original
+
+        glossary = subject.glossary(name, entries, source_lang, target_lang, options)
+        expect(glossary).to be_a(DeepL::Resources::Glossary)
+      end
+    end
+  end
+
   describe '#translate' do
     let(:input) { 'Sample' }
     let(:source_lang) { 'EN' }
