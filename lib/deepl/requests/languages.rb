@@ -16,7 +16,9 @@ module DeepL
       def build_languages(request, response)
         data = JSON.parse(response.body)
         data.map do |language|
-          Resources::Language.new(language['language'], language['name'], request, response)
+          Resources::Language.new(language['language'], language['name'],
+                                  language.fetch('supports_formality', nil),
+                                  request, response)
         end
       end
 
