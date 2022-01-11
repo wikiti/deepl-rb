@@ -18,7 +18,7 @@ module DeepL
     end
 
     def attributes
-      ATTRIBUTES.map { |attr| [attr, send(attr)] }.to_h
+      ATTRIBUTES.to_h { |attr| [attr, send(attr)] }
     end
 
     def ==(other)
