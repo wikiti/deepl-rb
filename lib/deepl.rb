@@ -15,7 +15,7 @@ require 'deepl/exceptions/not_supported'
 
 # -- Requests
 require 'deepl/requests/base'
-require 'deepl/requests/glossary'
+require 'deepl/requests/glossary/create'
 require 'deepl/requests/languages'
 require 'deepl/requests/translate'
 require 'deepl/requests/usage'

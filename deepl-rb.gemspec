@@ -38,7 +38,7 @@ Gem::Specification.new do |s|
     "lib/deepl/exceptions/quota_exceeded.rb",
     "lib/deepl/exceptions/request_error.rb",
     "lib/deepl/requests/base.rb",
-    "lib/deepl/requests/glossary.rb",
+    "lib/deepl/requests/glossary/create.rb",
     "lib/deepl/requests/languages.rb",
     "lib/deepl/requests/translate.rb",
     "lib/deepl/requests/usage.rb",
