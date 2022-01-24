@@ -21,7 +21,7 @@ VCR.configure do |config|
   config.filter_sensitive_data('VALID_TOKEN') { ENV['DEEPL_AUTH_KEY'] }
   config.default_cassette_options = {
     record: :new_episodes,
-    match_requests_on: %i[method uri body]
+    match_requests_on: %i[method uri body headers]
   }
 end
 
