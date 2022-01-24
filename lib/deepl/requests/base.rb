@@ -33,9 +33,8 @@ module DeepL
       end
 
       def post(payload)
-        request = Net::HTTP::Post.new(uri.request_uri)
+        request = Net::HTTP::Post.new(uri.request_uri, headers)
         request.set_form_data(payload.compact)
-        request['Authorization'] = "DeepL-Auth-Key #{ENV['DEEPL_AUTH_KEY']}"
         response = http.request(request)
 
         validate_response!(request, response)
@@ -43,7 +42,7 @@ module DeepL
       end
 
       def get
-        request = Net::HTTP::Get.new(uri.request_uri)
+        request = Net::HTTP::Get.new(uri.request_uri, headers)
         response = http.request(request)
 
         validate_response!(request, response)
@@ -92,7 +91,11 @@ module DeepL
       end
 
       def query_params
-        { auth_key: api.configuration.auth_key }.merge(options)
+        options
+      end
+
+      def headers
+        { 'Authorization' => "DeepL-Auth-Key #{api.configuration.auth_key}" }
       end
     end
   end

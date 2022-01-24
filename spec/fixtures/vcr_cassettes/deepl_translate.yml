@@ -2,11 +2,13 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api-free.deepl.com/v2/translate?auth_key=VALID_TOKEN&param=fake
+    uri: https://api-free.deepl.com/v2/translate?param=fake
     body:
       encoding: US-ASCII
       string: text=Sample&source_lang=EN&target_lang=ES
     headers:
+      Authorization:
+      - DeepL-Auth-Key VALID_TOKEN
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:

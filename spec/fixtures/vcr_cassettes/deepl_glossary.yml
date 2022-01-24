@@ -2,11 +2,13 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api-free.deepl.com/v2/glossaries?auth_key=VALID_TOKEN&param=fake
+    uri: https://api-free.deepl.com/v2/glossaries?param=fake
     body:
       encoding: US-ASCII
       string: name=Sample&entries=Hello%21%09Guten+Tag%21&source_lang=EN&target_lang=ES&entries_format=tsv
     headers:
+      Authorization:
+      - DeepL-Auth-Key VALID_TOKEN
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -15,8 +17,6 @@ http_interactions:
       - Ruby
       Content-Type:
       - application/x-www-form-urlencoded
-      Authorization:
-      - DeepL-Auth-Key VALID_TOKEN
   response:
     status:
       code: 201
