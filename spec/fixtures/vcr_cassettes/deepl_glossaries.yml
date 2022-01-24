@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api-free.deepl.com/v2/glossaries?param=fake
     body:
       encoding: US-ASCII
-      string: name=Sample&entries=Hello%21%09Guten+Tag%21&source_lang=EN&target_lang=ES&entries_format=tsv
+      string: name=Mi+Glosario&source_lang=EN&target_lang=ES&entries=Hello%09Hola%0AWorld%09Mundo%0A&entries_format=tsv
     headers:
       Authorization:
       - DeepL-Auth-Key VALID_TOKEN
@@ -25,7 +25,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 16 Nov 2021 10:33:20 GMT
+      - Mon, 24 Jan 2022 00:37:04 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -34,6 +34,6 @@ http_interactions:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"glossary_id":"658bb108-1600-4aed-bc68-80705e797410","name":"Sample","ready":true,"source_lang":"en","target_lang":"es","creation_time":"2021-11-16T10:33:20.519322+00:00","entry_count":1}'
-  recorded_at: Tue, 16 Nov 2021 10:33:20 GMT
+      string: '{"glossary_id":"579859d0-0036-489f-8ad5-70c27ffcd3a9","name":"Mi Glosario","ready":true,"source_lang":"en","target_lang":"es","creation_time":"2022-01-24T00:37:04.932382+00:00","entry_count":2}'
+  recorded_at: Mon, 24 Jan 2022 00:37:05 GMT
 recorded_with: VCR 6.0.0

@@ -41,11 +41,6 @@ module DeepL
     @api ||= API.new(configuration)
   end
 
-  def glossary(name, entries, source_lang, target_lang, options = {})
-    configure if @configuration.nil?
-    Requests::Glossary.new(api, name, entries, source_lang, target_lang, options).request
-  end
-
   def languages(options = {})
     Requests::Languages.new(api, options).request
   end
@@ -55,9 +50,26 @@ module DeepL
     Requests::Translate.new(api, text, source_lang, target_lang, options).request
   end
 
+  def glossaries(options = {})
+    configure if @configuration.nil?
+    GlossaryApi.new(api, options)
+  end
+
   def usage(options = {})
     configure if @configuration.nil?
     Requests::Usage.new(api, options).request
+  end
+
+  class GlossaryApi
+    def initialize(api, options = {})
+      @api = api
+      @options = options
+    end
+
+    def create(name, source_lang, target_lang, entries, entries_format = 'tsv', options = {})
+      DeepL::Requests::Glossary::Create.new(@api, name, source_lang, target_lang, entries,
+                                            entries_format, options).request
+    end
   end
 
   # -- Configuration
