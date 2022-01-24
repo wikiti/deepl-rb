@@ -17,10 +17,6 @@ module DeepL
 
         private
 
-        def url
-          "#{host}/#{api.configuration.version}/#{path}/#{id}"
-        end
-
         def build_glossary(request, response)
           glossary = JSON.parse(response.body)
           Resources::Glossary.new(glossary['glossary_id'], glossary['name'], glossary['ready'],
@@ -30,7 +26,7 @@ module DeepL
         end
 
         def path
-          'glossaries'
+          "glossaries/#{id}"
         end
       end
     end

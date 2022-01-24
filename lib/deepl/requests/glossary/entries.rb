@@ -17,16 +17,12 @@ module DeepL
 
         private
 
-        def url
-          "#{host}/#{api.configuration.version}/#{path}/#{id}/entries"
-        end
-
         def build_entries(_, response)
           response.body.split("\n").map { |entry| entry.split("\t") }
         end
 
         def path
-          'glossaries'
+          "glossaries/#{id}/entries"
         end
       end
     end

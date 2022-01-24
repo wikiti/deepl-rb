@@ -21,12 +21,8 @@ module DeepL
           id
         end
 
-        def url
-          "#{host}/#{api.configuration.version}/#{path}/#{id}"
-        end
-
         def path
-          'glossaries'
+          "glossaries/#{id}"
         end
       end
     end
