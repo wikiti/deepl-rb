@@ -17,6 +17,7 @@ require 'deepl/exceptions/not_supported'
 require 'deepl/requests/base'
 require 'deepl/requests/glossary/create'
 require 'deepl/requests/glossary/destroy'
+require 'deepl/requests/glossary/entries'
 require 'deepl/requests/glossary/find'
 require 'deepl/requests/glossary/list'
 require 'deepl/requests/languages'
@@ -76,6 +77,10 @@ module DeepL
 
     def destroy(glossary_id, options = {})
       DeepL::Requests::Glossary::Destroy.new(@api, glossary_id, options).request
+    end
+
+    def entries(glossary_id, options = {})
+      DeepL::Requests::Glossary::Entries.new(@api, glossary_id, options).request
     end
 
     def find(glossary_id, options = {})

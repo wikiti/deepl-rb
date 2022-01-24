@@ -216,5 +216,41 @@ describe DeepL do
         end
       end
     end
+
+    describe '#glossaries.entries' do
+      let(:id) { '012a5576-b551-4d4c-b917-ce01bc8debb6' }
+      let(:options) { {} }
+
+      around do |example|
+        subject.configure { |config| config.host = 'https://api-free.deepl.com' }
+        VCR.use_cassette('deepl_glossaries') { example.call }
+      end
+
+      context 'When listing glossary entries' do
+        it 'should create and call a request object' do
+          expect(DeepL::Requests::Glossary::Entries).to receive(:new)
+            .with(subject.api, id, options).and_call_original
+
+          entries = subject.glossaries.entries(id, options)
+          expect(entries).to all(be_a(Array))
+          entries.each do |entry|
+            expect(entry.size).to eq(2)
+            expect(entry.first).to be_a(String)
+            expect(entry.last).to be_a(String)
+          end
+        end
+      end
+
+      context 'When listing entries of a non existing glossary' do
+        let(:id) { '00000000-0000-0000-0000-000000000000' }
+
+        it 'should raise an exception when the glossary does not exist' do
+          expect(DeepL::Requests::Glossary::Entries).to receive(:new)
+            .with(subject.api, id, options).and_call_original
+          expect { subject.glossaries.entries(id, options) }
+            .to raise_error(DeepL::Exceptions::NotFound)
+        end
+      end
+    end
   end
 end
