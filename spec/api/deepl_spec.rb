@@ -252,5 +252,24 @@ describe DeepL do
         end
       end
     end
+
+    describe '#glossaries.language_pairs' do
+      let(:options) { {} }
+
+      around do |example|
+        subject.configure { |config| config.host = 'https://api-free.deepl.com' }
+        VCR.use_cassette('deepl_glossaries') { example.call }
+      end
+
+      context 'When fetching language pairs supported by glossaries' do
+        it 'should create and call a request object' do
+          expect(DeepL::Requests::Glossary::LanguagePairs).to receive(:new)
+            .with(subject.api, options).and_call_original
+
+          language_pairs = subject.glossaries.language_pairs(options)
+          expect(language_pairs).to all(be_a(DeepL::Resources::LanguagePair))
+        end
+      end
+    end
   end
 end
