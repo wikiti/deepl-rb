@@ -11,6 +11,7 @@ require 'deepl/exceptions/authorization_failed'
 require 'deepl/exceptions/bad_request'
 require 'deepl/exceptions/limit_exceeded'
 require 'deepl/exceptions/quota_exceeded'
+require 'deepl/exceptions/not_supported'
 
 # -- Requests
 require 'deepl/requests/base'

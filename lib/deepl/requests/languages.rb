@@ -17,7 +17,7 @@ module DeepL
         data = JSON.parse(response.body)
         data.map do |language|
           Resources::Language.new(language['language'], language['name'],
-                                  language.fetch('supports_formality', nil),
+                                  language['supports_formality'],
                                   request, response)
         end
       end

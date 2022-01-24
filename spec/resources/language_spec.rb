@@ -16,9 +16,8 @@ describe DeepL::Resources::Language do
         expect(subject.name).to eq('English')
       end
 
-      it 'should not include the supports formality attribute' do
-        expect(subject.respond_to?(:supports_formality)).to eq(false)
-        expect { subject.supports_formality }.to raise_error(NoMethodError)
+      it 'should not define the supports formality method' do
+        expect { subject.supports_formality? }.to raise_error(DeepL::Exceptions::NotSupported)
       end
     end
 
@@ -32,11 +31,11 @@ describe DeepL::Resources::Language do
       it 'should assign the attributes' do
         expect(subject.code).to eq('EN')
         expect(subject.name).to eq('English')
-        expect(subject.supports_formality).to eq(true)
       end
 
-      it 'should include the supports formality attribute' do
-        expect(subject.respond_to?(:supports_formality)).to eq(true)
+      it 'should include the supports formality method' do
+        expect { subject.supports_formality? }.not_to raise_error
+        expect(subject.supports_formality?).to be_truthy
       end
     end
   end
