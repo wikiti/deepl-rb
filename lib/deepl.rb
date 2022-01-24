@@ -16,6 +16,7 @@ require 'deepl/exceptions/not_supported'
 # -- Requests
 require 'deepl/requests/base'
 require 'deepl/requests/glossary/create'
+require 'deepl/requests/glossary/find'
 require 'deepl/requests/languages'
 require 'deepl/requests/translate'
 require 'deepl/requests/usage'
@@ -69,6 +70,10 @@ module DeepL
     def create(name, source_lang, target_lang, entries, entries_format = 'tsv', options = {})
       DeepL::Requests::Glossary::Create.new(@api, name, source_lang, target_lang, entries,
                                             entries_format, options).request
+    end
+
+    def find(glossary_id, options = {})
+      DeepL::Requests::Glossary::Find.new(@api, glossary_id, options).request
     end
   end
 

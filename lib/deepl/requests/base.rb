@@ -63,6 +63,7 @@ module DeepL
         case response.code
         when '400' then raise Exceptions::BadRequest.new(request, response)
         when '403' then raise Exceptions::AuthorizationFailed.new(request, response)
+        when '404' then raise Exceptions::NotFound.new(request, response)
         when '429' then raise Exceptions::LimitExceeded.new(request, response)
         when '456' then raise Exceptions::QuotaExceeded.new(request, response)
         else raise Exceptions::RequestError.new(request, response)

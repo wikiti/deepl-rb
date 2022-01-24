@@ -25,7 +25,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 24 Jan 2022 00:38:28 GMT
+      - Mon, 24 Jan 2022 01:32:33 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -34,6 +34,108 @@ http_interactions:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"glossary_id":"4a6776f3-2c72-41ec-a231-4f0dbea8b6f4","name":"Mi Glosario","ready":true,"source_lang":"en","target_lang":"es","creation_time":"2022-01-24T00:38:28.817133+00:00","entry_count":2}'
-  recorded_at: Mon, 24 Jan 2022 00:38:28 GMT
+      string: '{"glossary_id":"3d12b7d8-012d-47b8-8378-c7085644026d","name":"Mi Glosario","ready":true,"source_lang":"en","target_lang":"es","creation_time":"2022-01-24T01:32:33.045005+00:00","entry_count":2}'
+  recorded_at: Mon, 24 Jan 2022 01:32:33 GMT
+- request:
+    method: get
+    uri: https://api-free.deepl.com/v2/glossaries/d9ad833f-c818-430c-a3c9-47071384fa3e
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - DeepL-Auth-Key VALID_TOKEN
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 24 Jan 2022 01:32:36 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"glossary_id":"d9ad833f-c818-430c-a3c9-47071384fa3e","name":"Mi Glosario","ready":true,"source_lang":"en","target_lang":"es","creation_time":"2022-01-23T23:01:10.073429+00:00","entry_count":2}'
+  recorded_at: Mon, 24 Jan 2022 01:32:36 GMT
+- request:
+    method: get
+    uri: https://api-free.deepl.com/v2/glossaries/a0af40e1-d81b-4aab-a95c-7cafbcfd1eb1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - DeepL-Auth-Key VALID_TOKEN
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 24 Jan 2022 01:32:36 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"message":"Not found"}'
+  recorded_at: Mon, 24 Jan 2022 01:32:36 GMT
+- request:
+    method: get
+    uri: https://api-free.deepl.com/v2/glossaries/invalid-uuid
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - DeepL-Auth-Key VALID_TOKEN
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 24 Jan 2022 01:32:36 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"message":"Invalid or missing glossary id"}'
+  recorded_at: Mon, 24 Jan 2022 01:32:36 GMT
 recorded_with: VCR 6.0.0

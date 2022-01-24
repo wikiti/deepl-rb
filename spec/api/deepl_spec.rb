@@ -102,33 +102,66 @@ describe DeepL do
   end
 
   describe '#glossaries' do
-    let(:name) { 'Mi Glosario' }
-    let(:source_lang) { 'EN' }
-    let(:target_lang) { 'ES' }
-    let(:entries) do
-      [
-        %w[Hello Hola],
-        %w[World Mundo]
-      ]
+    describe '#glossaries.create' do
+      let(:name) { 'Mi Glosario' }
+      let(:source_lang) { 'EN' }
+      let(:target_lang) { 'ES' }
+      let(:entries) do
+        [
+          %w[Hello Hola],
+          %w[World Mundo]
+        ]
+      end
+      let(:entries_format) { 'tsv' }
+      let(:options) { { param: 'fake' } }
+
+      around do |example|
+        subject.configure { |config| config.host = 'https://api-free.deepl.com' }
+        VCR.use_cassette('deepl_glossaries') { example.call }
+      end
+
+      context 'When creating a glossary' do
+        it 'should create and call a request object' do
+          expect(DeepL::Requests::Glossary::Create).to receive(:new)
+            .with(subject.api, name, source_lang, target_lang, entries, entries_format,
+                  options).and_call_original
+
+          glossary = subject.glossaries.create(name, source_lang, target_lang, entries,
+                                               entries_format, options)
+          expect(glossary).to be_a(DeepL::Resources::Glossary)
+        end
+      end
     end
-    let(:entries_format) { 'tsv' }
-    let(:options) { { param: 'fake' } }
 
-    around do |example|
-      subject.configure { |config| config.host = 'https://api-free.deepl.com' }
-      VCR.use_cassette('deepl_glossaries') { example.call }
-    end
+    describe '#glossaries.find' do
+      let(:id) { 'd9ad833f-c818-430c-a3c9-47071384fa3e' }
+      let(:options) { {} }
 
-    context 'When creating a glossary' do
-      it 'should create and call a request object' do
-        expect(DeepL::Requests::Glossary::Create).to receive(:new)
-          .with(subject.api, name, source_lang, target_lang, entries, entries_format,
-                options).and_call_original
+      around do |example|
+        subject.configure { |config| config.host = 'https://api-free.deepl.com' }
+        VCR.use_cassette('deepl_glossaries') { example.call }
+      end
 
-        glossary = subject.glossaries.create(name, source_lang, target_lang, entries, entries_format, options)
-        expect(glossary).to be_a(DeepL::Resources::Glossary)
+      context 'When fetching a glossary' do
+        it 'should create and call a request object' do
+          expect(DeepL::Requests::Glossary::Find).to receive(:new)
+            .with(subject.api, id, options).and_call_original
+
+          glossary = subject.glossaries.find(id, options)
+          expect(glossary).to be_a(DeepL::Resources::Glossary)
+        end
+      end
+
+      context 'When fetching a non existing glossary' do
+        let(:id) { '00000000-0000-0000-0000-000000000000' }
+
+        it 'should raise an exception when the glossary does not exist' do
+          expect(DeepL::Requests::Glossary::Find).to receive(:new)
+            .with(subject.api, id, options).and_call_original
+          expect { subject.glossaries.find(id, options) }
+            .to raise_error(DeepL::Exceptions::NotFound)
+        end
       end
     end
   end
-
 end
