@@ -49,6 +49,14 @@ module DeepL
         [request, response]
       end
 
+      def delete
+        request = Net::HTTP::Delete.new(uri.request_uri, headers)
+        response = http.request(request)
+
+        validate_response!(request, response)
+        [request, response]
+      end
+
       def http
         @http ||= begin
           http = Net::HTTP.new(uri.host, uri.port)

@@ -182,5 +182,39 @@ describe DeepL do
         end
       end
     end
+
+    describe '#glossaries.destroy' do
+      let(:id) { 'd9ad833f-c818-430c-a3c9-47071384fa3e' }
+      let(:options) { {} }
+
+      around do |example|
+        subject.configure { |config| config.host = 'https://api-free.deepl.com' }
+        VCR.use_cassette('deepl_glossaries') { example.call }
+      end
+
+      context 'When destroy a glossary' do
+        let(:new_glossary) do
+          subject.glossaries.create('fixture', 'EN', 'ES', [%w[Hello Holla]])
+        end
+        it 'should create and call a request object' do
+          expect(DeepL::Requests::Glossary::Destroy).to receive(:new)
+            .with(subject.api, new_glossary.id, options).and_call_original
+
+          glossary_id = subject.glossaries.destroy(new_glossary.id, options)
+          expect(glossary_id).to eq(new_glossary.id)
+        end
+      end
+
+      context 'When destroying a non existing glossary' do
+        let(:id) { '00000000-0000-0000-0000-000000000000' }
+
+        it 'should raise an exception when the glossary does not exist' do
+          expect(DeepL::Requests::Glossary::Destroy).to receive(:new)
+            .with(subject.api, id, options).and_call_original
+          expect { subject.glossaries.destroy(id, options) }
+            .to raise_error(DeepL::Exceptions::NotFound)
+        end
+      end
+    end
   end
 end

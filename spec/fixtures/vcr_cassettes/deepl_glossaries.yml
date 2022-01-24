@@ -139,4 +139,104 @@ http_interactions:
       string: '{"glossaries":[{"glossary_id":"012a5576-b551-4d4c-b917-ce01bc8debb6","name":"Mi
         Glosario","ready":true,"source_lang":"en","target_lang":"es","creation_time":"2022-01-24T02:21:43.300323+00:00","entry_count":2}]}'
   recorded_at: Mon, 24 Jan 2022 02:24:30 GMT
+- request:
+    method: post
+    uri: https://api-free.deepl.com/v2/glossaries
+    body:
+      encoding: US-ASCII
+      string: name=fixture&source_lang=EN&target_lang=ES&entries=Hello%09Holla%0A&entries_format=tsv
+    headers:
+      Authorization:
+      - DeepL-Auth-Key VALID_TOKEN
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 24 Jan 2022 02:39:35 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"glossary_id":"c03fd58d-1a51-48c1-ad75-5a89d14e3e23","name":"fixture","ready":true,"source_lang":"en","target_lang":"es","creation_time":"2022-01-24T02:39:35.522241+00:00","entry_count":1}'
+  recorded_at: Mon, 24 Jan 2022 02:39:35 GMT
+- request:
+    method: delete
+    uri: https://api-free.deepl.com/v2/glossaries/c03fd58d-1a51-48c1-ad75-5a89d14e3e23
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - DeepL-Auth-Key VALID_TOKEN
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 24 Jan 2022 02:39:36 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Mon, 24 Jan 2022 02:39:35 GMT
+- request:
+    method: delete
+    uri: https://api-free.deepl.com/v2/glossaries/00000000-0000-0000-0000-000000000000
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - DeepL-Auth-Key VALID_TOKEN
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 24 Jan 2022 02:39:36 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"message":"Not found"}'
+  recorded_at: Mon, 24 Jan 2022 02:39:36 GMT
 recorded_with: VCR 6.0.0
