@@ -163,5 +163,24 @@ describe DeepL do
         end
       end
     end
+
+    describe '#glossaries.list' do
+      let(:options) { {} }
+
+      around do |example|
+        subject.configure { |config| config.host = 'https://api-free.deepl.com' }
+        VCR.use_cassette('deepl_glossaries') { example.call }
+      end
+
+      context 'When fetching glossaries' do
+        it 'should create and call a request object' do
+          expect(DeepL::Requests::Glossary::List).to receive(:new)
+            .with(subject.api, options).and_call_original
+
+          glossaries = subject.glossaries.list(options)
+          expect(glossaries).to all(be_a(DeepL::Resources::Glossary))
+        end
+      end
+    end
   end
 end
