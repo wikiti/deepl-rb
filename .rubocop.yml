@@ -11,7 +11,10 @@ Metrics/BlockLength:
   Exclude:
   - "**/*_spec.rb"
 
-Metrics/LineLength:
+Metrics/ParameterLists:
+  Max: 8
+
+Layout/LineLength:
   Max: 100
 
 Style/Documentation:

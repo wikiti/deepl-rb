@@ -13,7 +13,7 @@ module DeepL
           @source_lang = source_lang
           @target_lang = target_lang
           @entries = entries
-          @entries_format = entries_format
+          @entries_format = entries_format || 'tsv'
         end
 
         def request
