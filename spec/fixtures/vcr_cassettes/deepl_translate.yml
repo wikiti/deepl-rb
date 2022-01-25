@@ -38,4 +38,213 @@ http_interactions:
       encoding: UTF-8
       string: '{"translations":[{"detected_source_language":"EN","text":"Muestra"}]}'
   recorded_at: Mon, 17 May 2021 14:42:56 GMT
+- request:
+    method: post
+    uri: https://api-free.deepl.com/v2/glossaries
+    body:
+      encoding: US-ASCII
+      string: name=fixture&source_lang=EN&target_lang=ES&entries=World%09Tierra%0A&entries_format=tsv
+    headers:
+      Authorization:
+      - DeepL-Auth-Key VALID_TOKEN
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 24 Jan 2022 23:22:45 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"glossary_id":"c8ec9224-f13c-4af5-94eb-25e2d6112d34","name":"fixture","ready":true,"source_lang":"en","target_lang":"es","creation_time":"2022-01-24T23:22:45.4428+00:00","entry_count":1}'
+  recorded_at: Mon, 24 Jan 2022 23:22:45 GMT
+- request:
+    method: post
+    uri: https://api-free.deepl.com/v2/translate?glossary_id=c8ec9224-f13c-4af5-94eb-25e2d6112d34
+    body:
+      encoding: US-ASCII
+      string: text=Hello+World&source_lang=EN&target_lang=ES
+    headers:
+      Authorization:
+      - DeepL-Auth-Key VALID_TOKEN
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 24 Jan 2022 23:22:47 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '73'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+    body:
+      encoding: UTF-8
+      string: '{"translations":[{"detected_source_language":"EN","text":"Hola Tierra"}]}'
+  recorded_at: Mon, 24 Jan 2022 23:22:47 GMT
+- request:
+    method: delete
+    uri: https://api-free.deepl.com/v2/glossaries/c8ec9224-f13c-4af5-94eb-25e2d6112d34
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - DeepL-Auth-Key VALID_TOKEN
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 24 Jan 2022 23:22:48 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Mon, 24 Jan 2022 23:22:48 GMT
+- request:
+    method: post
+    uri: https://api-free.deepl.com/v2/glossaries
+    body:
+      encoding: US-ASCII
+      string: name=fixture&source_lang=EN&target_lang=ES&entries=car%09auto%0A&entries_format=tsv
+    headers:
+      Authorization:
+      - DeepL-Auth-Key VALID_TOKEN
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 25 Jan 2022 00:52:04 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"glossary_id":"0d425d16-dbdf-4d26-aca1-12d41e9ea484","name":"fixture","ready":true,"source_lang":"en","target_lang":"es","creation_time":"2022-01-25T00:52:04.21883+00:00","entry_count":1}'
+  recorded_at: Tue, 25 Jan 2022 00:52:04 GMT
+- request:
+    method: post
+    uri: https://api-free.deepl.com/v2/translate?glossary_id=0d425d16-dbdf-4d26-aca1-12d41e9ea484
+    body:
+      encoding: US-ASCII
+      string: text=I+wish+we+had+a+car.&source_lang=EN&target_lang=ES
+    headers:
+      Authorization:
+      - DeepL-Auth-Key VALID_TOKEN
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 25 Jan 2022 00:52:04 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '89'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJ0cmFuc2xhdGlvbnMiOlt7ImRldGVjdGVkX3NvdXJjZV9sYW5ndWFnZSI6IkVOIiwidGV4dCI6Ik9qYWzDoSB0dXZpw6lyYW1vcyB1biBhdXRvLiJ9XX0=
+  recorded_at: Tue, 25 Jan 2022 00:52:04 GMT
+- request:
+    method: delete
+    uri: https://api-free.deepl.com/v2/glossaries/0d425d16-dbdf-4d26-aca1-12d41e9ea484
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - DeepL-Auth-Key VALID_TOKEN
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 25 Jan 2022 00:52:05 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Tue, 25 Jan 2022 00:52:05 GMT
 recorded_with: VCR 6.0.0

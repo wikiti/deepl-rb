@@ -22,7 +22,7 @@ describe DeepL::Requests::Glossary::Destroy do
 
     context 'When performing a valid request' do
       let(:new_glossary) do
-        DeepL::Requests::Glossary::Create.new(api, 'fixture', 'EN', 'ES', [%w[Hello Holla]]).request
+        DeepL::Requests::Glossary::Create.new(api, 'fixture', 'EN', 'ES', [%w[Hello Hola]]).request
       end
       subject { DeepL::Requests::Glossary::Destroy.new(api, new_glossary.id) }
       it 'should return an empty object' do

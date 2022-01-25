@@ -140,42 +140,6 @@ http_interactions:
         Glosario","ready":true,"source_lang":"en","target_lang":"es","creation_time":"2022-01-24T02:21:43.300323+00:00","entry_count":2}]}'
   recorded_at: Mon, 24 Jan 2022 02:24:30 GMT
 - request:
-    method: post
-    uri: https://api-free.deepl.com/v2/glossaries
-    body:
-      encoding: US-ASCII
-      string: name=fixture&source_lang=EN&target_lang=ES&entries=Hello%09Holla%0A&entries_format=tsv
-    headers:
-      Authorization:
-      - DeepL-Auth-Key VALID_TOKEN
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Content-Type:
-      - application/x-www-form-urlencoded
-  response:
-    status:
-      code: 201
-      message: Created
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Mon, 24 Jan 2022 02:39:35 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-    body:
-      encoding: UTF-8
-      string: '{"glossary_id":"c03fd58d-1a51-48c1-ad75-5a89d14e3e23","name":"fixture","ready":true,"source_lang":"en","target_lang":"es","creation_time":"2022-01-24T02:39:35.522241+00:00","entry_count":1}'
-  recorded_at: Mon, 24 Jan 2022 02:39:35 GMT
-- request:
     method: delete
     uri: https://api-free.deepl.com/v2/glossaries/c03fd58d-1a51-48c1-ad75-5a89d14e3e23
     body:
@@ -341,4 +305,70 @@ http_interactions:
       encoding: UTF-8
       string: '{"supported_languages":[{"source_lang":"de","target_lang":"en"},{"source_lang":"en","target_lang":"de"},{"source_lang":"en","target_lang":"es"},{"source_lang":"en","target_lang":"fr"},{"source_lang":"es","target_lang":"en"},{"source_lang":"fr","target_lang":"en"}]}'
   recorded_at: Mon, 24 Jan 2022 03:01:06 GMT
+- request:
+    method: post
+    uri: https://api-free.deepl.com/v2/glossaries
+    body:
+      encoding: US-ASCII
+      string: name=fixture&source_lang=EN&target_lang=ES&entries=Hello%09Hola%0A&entries_format=tsv
+    headers:
+      Authorization:
+      - DeepL-Auth-Key VALID_TOKEN
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 25 Jan 2022 00:53:44 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"glossary_id":"fd53187f-2306-4f0a-aa13-00df678bd609","name":"fixture","ready":true,"source_lang":"en","target_lang":"es","creation_time":"2022-01-25T00:53:44.380234+00:00","entry_count":1}'
+  recorded_at: Tue, 25 Jan 2022 00:53:44 GMT
+- request:
+    method: delete
+    uri: https://api-free.deepl.com/v2/glossaries/fd53187f-2306-4f0a-aa13-00df678bd609
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - DeepL-Auth-Key VALID_TOKEN
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 25 Jan 2022 00:53:44 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Tue, 25 Jan 2022 00:53:45 GMT
 recorded_with: VCR 6.0.0

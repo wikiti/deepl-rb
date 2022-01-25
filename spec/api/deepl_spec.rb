@@ -60,6 +60,26 @@ describe DeepL do
         expect(text).to be_a(DeepL::Resources::Text)
       end
     end
+
+    context 'When translating a text using a glossary' do
+      before(:each) do
+        @glossary = subject.glossaries.create('fixture', 'EN', 'ES', [%w[car auto]])
+      end
+      let(:input) { 'I wish we had a car.' }
+      let(:options) { { glossary_id: @glossary.id } }
+
+      it 'should create and call a request object' do
+        expect(DeepL::Requests::Translate).to receive(:new)
+          .with(subject.api, input, source_lang, target_lang, options).and_call_original
+        text = subject.translate(input, source_lang, target_lang, options)
+        expect(text).to be_a(DeepL::Resources::Text)
+        expect(text.text).to eq('Ojalá tuviéramos un auto.')
+      end
+
+      after(:each) do
+        subject.glossaries.destroy(@glossary.id)
+      end
+    end
   end
 
   describe '#usage' do
@@ -194,7 +214,7 @@ describe DeepL do
 
       context 'When destroy a glossary' do
         let(:new_glossary) do
-          subject.glossaries.create('fixture', 'EN', 'ES', [%w[Hello Holla]])
+          subject.glossaries.create('fixture', 'EN', 'ES', [%w[Hello Hola]])
         end
         it 'should create and call a request object' do
           expect(DeepL::Requests::Glossary::Destroy).to receive(:new)

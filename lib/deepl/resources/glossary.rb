@@ -17,10 +17,6 @@ module DeepL
         @entry_count = entry_count
       end
 
-      def entries
-        DeepL.glossaries.entries(id)
-      end
-
       def to_s
         "#{id} - #{name}"
       end
