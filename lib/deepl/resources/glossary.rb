@@ -5,16 +5,16 @@ module DeepL
     class Glossary < Base
       attr_reader :id, :name, :ready, :source_lang, :target_lang, :creation_time, :entry_count
 
-      def initialize(id, name, ready, source_lang, target_lang, creation_time, entry_count, *args)
+      def initialize(glossary, *args)
         super(*args)
 
-        @id = id
-        @name = name
-        @ready = ready
-        @source_lang = source_lang
-        @target_lang = target_lang
-        @creation_time = creation_time
-        @entry_count = entry_count
+        @id = glossary['glossary_id']
+        @name = glossary['name']
+        @ready = glossary['ready']
+        @source_lang = glossary['source_lang']
+        @target_lang = glossary['target_lang']
+        @creation_time = glossary['creation_time']
+        @entry_count = glossary['entry_count']
       end
 
       def to_s

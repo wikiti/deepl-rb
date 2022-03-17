@@ -17,10 +17,7 @@ module DeepL
         def build_glossary_list(request, response)
           data = JSON.parse(response.body)
           data['glossaries'].map do |glossary|
-            Resources::Glossary.new(glossary['glossary_id'], glossary['name'], glossary['ready'],
-                                    glossary['source_lang'], glossary['target_lang'],
-                                    glossary['creation_time'], glossary['entry_count'],
-                                    request, response)
+            Resources::Glossary.new(glossary, request, response)
           end
         end
 

@@ -4,8 +4,15 @@ require 'spec_helper'
 
 describe DeepL::Resources::Glossary do
   subject do
-    described_class.new('def3a26b-3e84-45b3-84ae-0c0aaf3525f7', 'Mein Glossar', true, 'EN', 'DE',
-                        '2021-08-03T14:16:18.329Z', 1, nil, nil)
+    described_class.new({
+                          'glossary_id' => 'def3a26b-3e84-45b3-84ae-0c0aaf3525f7',
+                          'name' => 'Mein Glossar',
+                          'ready' => true,
+                          'source_lang' => 'EN',
+                          'target_lang' => 'DE',
+                          'creation_time' => '2021-08-03T14:16:18.329Z',
+                          'entry_count' => 1
+                        }, nil, nil)
   end
 
   describe '#initialize' do
