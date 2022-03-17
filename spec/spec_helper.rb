@@ -20,7 +20,7 @@ VCR.configure do |config|
   config.hook_into :webmock
   config.filter_sensitive_data('VALID_TOKEN') { ENV['DEEPL_AUTH_KEY'] }
   config.default_cassette_options = {
-    record: :new_episodes,
+    # record: :new_episodes,
     match_requests_on: %i[method uri body headers]
   }
 end
