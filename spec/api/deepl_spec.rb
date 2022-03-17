@@ -132,8 +132,7 @@ describe DeepL do
           %w[World Mundo]
         ]
       end
-      let(:entries_format) { 'tsv' }
-      let(:options) { { param: 'fake' } }
+      let(:options) { { param: 'fake', entries_format: 'tsv' } }
 
       around do |example|
         subject.configure { |config| config.host = 'https://api-free.deepl.com' }
@@ -143,11 +142,9 @@ describe DeepL do
       context 'When creating a glossary' do
         it 'should create and call a request object' do
           expect(DeepL::Requests::Glossary::Create).to receive(:new)
-            .with(subject.api, name, source_lang, target_lang, entries, entries_format,
-                  options).and_call_original
+            .with(subject.api, name, source_lang, target_lang, entries, options).and_call_original
 
-          glossary = subject.glossaries.create(name, source_lang, target_lang, entries,
-                                               entries_format, options)
+          glossary = subject.glossaries.create(name, source_lang, target_lang, entries, options)
           expect(glossary).to be_a(DeepL::Resources::Glossary)
         end
       end

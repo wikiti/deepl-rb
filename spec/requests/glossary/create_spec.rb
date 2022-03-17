@@ -16,8 +16,7 @@ describe DeepL::Requests::Glossary::Create do
   let(:entries_format) { 'tsv' }
   let(:options) { {} }
   subject do
-    DeepL::Requests::Glossary::Create.new(api, name, source_lang, target_lang, entries,
-                                          entries_format, options)
+    DeepL::Requests::Glossary::Create.new(api, name, source_lang, target_lang, entries, options)
   end
 
   describe '#initialize' do
@@ -28,7 +27,7 @@ describe DeepL::Requests::Glossary::Create do
 
       it 'should set the default value for the entries format if not specified' do
         request = DeepL::Requests::Glossary::Create.new(api, name, source_lang, target_lang,
-                                                        entries, nil, options)
+                                                        entries, options)
         expect(request.entries_format).to eq('tsv')
       end
     end
