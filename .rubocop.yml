@@ -4,14 +4,17 @@ AllCops:
   DisplayCopNames: true
   NewCops: enable
   Exclude:
-  - deepl-rb.gemspec
-  - vendor/**/*
+    - deepl-rb.gemspec
+    - vendor/**/*
 
 Metrics/BlockLength:
   Exclude:
-  - "**/*_spec.rb"
+    - "**/*_spec.rb"
 
-Metrics/LineLength:
+Metrics/ParameterLists:
+  Max: 6
+
+Layout/LineLength:
   Max: 100
 
 Style/Documentation:

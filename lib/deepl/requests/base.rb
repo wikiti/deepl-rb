@@ -24,6 +24,10 @@ module DeepL
         options[name.to_s] || options[name.to_sym]
       end
 
+      def delete_option(name)
+        options.delete(name.to_s) || options.delete(name.to_sym)
+      end
+
       def set_option(name, value)
         if options.key?(name.to_sym)
           options[name.to_sym] = value
@@ -33,7 +37,7 @@ module DeepL
       end
 
       def post(payload)
-        request = Net::HTTP::Post.new(uri.request_uri)
+        request = Net::HTTP::Post.new(uri.request_uri, headers)
         request.set_form_data(payload.compact)
         response = http.request(request)
 
@@ -42,7 +46,15 @@ module DeepL
       end
 
       def get
-        request = Net::HTTP::Get.new(uri.request_uri)
+        request = Net::HTTP::Get.new(uri.request_uri, headers)
+        response = http.request(request)
+
+        validate_response!(request, response)
+        [request, response]
+      end
+
+      def delete
+        request = Net::HTTP::Delete.new(uri.request_uri, headers)
         response = http.request(request)
 
         validate_response!(request, response)
@@ -62,7 +74,8 @@ module DeepL
 
         case response.code
         when '400' then raise Exceptions::BadRequest.new(request, response)
-        when '403' then raise Exceptions::AuthorizationFailed.new(request, response)
+        when '401', '403' then raise Exceptions::AuthorizationFailed.new(request, response)
+        when '404' then raise Exceptions::NotFound.new(request, response)
         when '429' then raise Exceptions::LimitExceeded.new(request, response)
         when '456' then raise Exceptions::QuotaExceeded.new(request, response)
         else raise Exceptions::RequestError.new(request, response)
@@ -91,7 +104,11 @@ module DeepL
       end
 
       def query_params
-        { auth_key: api.configuration.auth_key }.merge(options)
+        options
+      end
+
+      def headers
+        { 'Authorization' => "DeepL-Auth-Key #{api.configuration.auth_key}" }
       end
     end
   end

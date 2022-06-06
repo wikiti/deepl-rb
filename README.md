@@ -133,6 +133,100 @@ The following parameters will be automatically converted:
 | `formality`           | No conversion applied
 | `glossary_id`         | No conversion applied
 
+### Glossaries
+
+To create a glossary, use the `glossaries.create` method. The glossary `entries` argument should be an array of text pairs. Each pair includes the source and the target translations.
+
+```rb
+entries = [
+  ['Hello World', 'Hola Tierra'],
+  ['car', 'auto']
+]
+glossary = DeepL.glossaries.create 'Mi Glosario', 'EN', 'ES', entries
+
+puts glossary.class
+# => DeepL::Resources::Glossary
+puts glossary.id
+# => 'aa48c7f0-0d02-413e-8a06-d5bbf0ca7a6e'
+puts glossary.entry_count
+# => 2
+```
+
+Created glossaries can be used in the `translate` method by specifying the `glossary_id` option:
+
+```rb
+translation = DeepL.translate 'Hello World', 'EN', 'ES', glossary_id: 'aa48c7f0-0d02-413e-8a06-d5bbf0ca7a6e'
+
+puts translation.class
+# => DeepL::Resources::Text
+puts translation.text
+# => 'Hola Tierra'
+
+translation = DeepL.translate "I wish we had a car.", 'EN', 'ES', glossary_id: 'aa48c7f0-0d02-413e-8a06-d5bbf0ca7a6e'
+
+puts translation.class
+# => DeepL::Resources::Text
+puts translation.text
+# => Ojalá tuviéramos un auto.
+```
+
+To list all the glossaries available, use the `glossaries.list` method:
+
+```rb
+glossaries = DeepL.glossaries.list
+
+puts glossaries.class
+# => Array
+puts glossaries.first.class
+# => DeepL::Resources::Glossary
+```
+
+To find an existing glossary, use the `glossaries.find` method:
+
+```rb
+glossary = DeepL.glossaries.find 'aa48c7f0-0d02-413e-8a06-d5bbf0ca7a6e'
+
+puts glossary.class
+# => DeepL::Resources::Glossary
+```
+
+The glossary resource does not include the glossary entries. To list the glossary entries, use the `glossaries.entries` method:
+
+```rb
+entries = DeepL.glossaries.entries 'aa48c7f0-0d02-413e-8a06-d5bbf0ca7a6e'
+
+puts entries.class
+# => Array
+puts entries.size
+# => 2
+pp entries.first
+# => ["Hello World", "Hola Tierra"]
+```
+
+To delete an existing glossary, use the `glossaries.destroy` method:
+
+```rb
+glossary_id = DeepL.glossaries.destroy 'aa48c7f0-0d02-413e-8a06-d5bbf0ca7a6e'
+
+puts glossary_id
+# => aa48c7f0-0d02-413e-8a06-d5bbf0ca7a6e
+```
+
+You can list all the language pairs supported by glossaries using the `glossaries.language_pairs` method:
+
+```rb
+language_pairs = DeepL.glossaries.language_pairs
+
+puts language_pairs.class
+# => Array
+puts language_pairs.first.class
+# => DeepL::Resources::LanguagePair
+puts language_pairs.first.source_lang
+# => en
+puts language_pairs.first.target_lang
+# => de
+```
+
 ### Monitor usage
 
 To check current API usage, use:

@@ -2,11 +2,13 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api-free.deepl.com/v2/languages?auth_key=VALID_TOKEN
+    uri: https://api-free.deepl.com/v2/languages
     body:
       encoding: US-ASCII
       string: ''
     headers:
+      Authorization:
+      - DeepL-Auth-Key VALID_TOKEN
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -36,11 +38,13 @@ http_interactions:
   recorded_at: Mon, 17 May 2021 14:49:42 GMT
 - request:
     method: get
-    uri: https://api-free.deepl.com/v2/languages?auth_key=VALID_TOKEN&type=target
+    uri: https://api-free.deepl.com/v2/languages?type=target
     body:
       encoding: US-ASCII
       string: ''
     headers:
+      Authorization:
+      - DeepL-Auth-Key VALID_TOKEN
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -74,11 +78,13 @@ http_interactions:
   recorded_at: Mon, 17 May 2021 14:55:30 GMT
 - request:
     method: get
-    uri: https://api-free.deepl.com/v2/languages?auth_key=VALID_TOKEN&type=invalid
+    uri: https://api-free.deepl.com/v2/languages?type=invalid
     body:
       encoding: US-ASCII
       string: ''
     headers:
+      Authorization:
+      - DeepL-Auth-Key VALID_TOKEN
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
