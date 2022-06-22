@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe DeepL::Requests::Translate do
-  let(:tags_str) { 'p, strong, span' }
+  let(:tags_str) { 'p,strong,span' }
   let(:tags_array) { %w[p strong span] }
 
   let(:api) { build_deepl_api }
@@ -17,6 +17,33 @@ describe DeepL::Requests::Translate do
     context 'When building a request' do
       it 'should create a request object' do
         expect(subject).to be_a(DeepL::Requests::Translate)
+      end
+    end
+
+    context 'when using `splitting_tags` options' do
+      it 'should work with a nil values' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, splitting_tags: nil)
+        expect(request.options[:splitting_tags]).to eq(nil)
+      end
+
+      it 'should work with a blank list' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, splitting_tags: '')
+        expect(request.options[:splitting_tags]).to eq('')
+      end
+
+      it 'should work with a comma-separated list' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, splitting_tags: tags_str)
+        expect(request.options[:splitting_tags]).to eq(tags_str)
+      end
+
+      it 'should convert arrays to strings' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, splitting_tags: tags_array)
+        expect(request.options[:splitting_tags]).to eq(tags_str)
+      end
+
+      it 'should leave strings as they are' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, splitting_tags: tags_str)
+        expect(request.options[:splitting_tags]).to eq(tags_str)
       end
     end
 
