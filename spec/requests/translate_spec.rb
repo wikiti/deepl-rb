@@ -11,6 +11,7 @@ describe DeepL::Requests::Translate do
   let(:source_lang) { 'EN' }
   let(:target_lang) { 'ES' }
   let(:options) { {} }
+
   subject { DeepL::Requests::Translate.new(api, text, source_lang, target_lang, options) }
 
   describe '#initialize' do
@@ -242,13 +243,57 @@ describe DeepL::Requests::Translate do
 
     context 'When performing a valid request and passing a variable' do
       let(:text) { 'Welcome and <code>Hello great World</code> Good Morning!' }
-      let(:options) { { tag_handling: 'xml', ignore_tags: 'code,span' } }
+      let(:options) { { tag_handling: 'xml', ignore_tags: %w[code span] } }
 
       it 'should return a text object' do
         text = subject.request
 
         expect(text).to be_a(DeepL::Resources::Text)
         expect(text.text).to eq('Bienvenido y <code>Hello great World</code> ¡Buenos días!')
+        expect(text.detected_source_language).to eq('EN')
+      end
+    end
+
+    context 'When performing a valid request with an HTML document' do
+      let(:text) do
+        <<~XML
+          <document>
+            <meta>
+              <title>A document's title</title>
+            </meta>
+            <content>
+              <par>This is the first sentence. Followed by a second one.</par>
+              <par>This is the third sentence.</par>
+            </content>
+          </document>
+        XML
+      end
+      let(:options) do
+        {
+          tag_handling: 'xml',
+          split_sentences: 'nonewlines',
+          outline_detection: false,
+          splitting_tags: %w[title par]
+        }
+      end
+
+      it 'should return a text object' do
+        text = subject.request
+
+        expect(text).to be_a(DeepL::Resources::Text)
+        expect(text.text).to eq(
+          <<~XML
+            <document>
+              <meta>
+                <title>El título de un documento</title>
+              </meta>
+              <content>
+                <par>Es la primera frase. Seguido de una segunda.</par>
+                <par>Esta es la tercera frase.</par>
+              </content>
+            </document>
+          XML
+        )
         expect(text.detected_source_language).to eq('EN')
       end
     end
