@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe DeepL::Requests::Translate do
-  let(:tags_str) { 'p, strong, span' }
+  let(:tags_str) { 'p,strong,span' }
   let(:tags_array) { %w[p strong span] }
 
   let(:api) { build_deepl_api }

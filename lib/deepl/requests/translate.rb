@@ -4,7 +4,7 @@ module DeepL
   module Requests
     class Translate < Base
       BOOLEAN_CONVERSION = { true => '1', false => '0' }.freeze
-      ARRAY_CONVERSION = ->(value) { value.is_a?(Array) ? value.join(', ') : value }.freeze
+      ARRAY_CONVERSION = ->(value) { value.is_a?(Array) ? value.join(',') : value }.freeze
       OPTIONS_CONVERSIONS = {
         split_sentences: BOOLEAN_CONVERSION,
         preserve_formatting: BOOLEAN_CONVERSION,
