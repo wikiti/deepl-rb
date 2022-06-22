@@ -9,7 +9,7 @@ describe DeepL::Configuration do
   describe '#initialize' do
     context 'When using default configuration attributes' do
       it 'should use default attributes' do
-        expect(subject.auth_key).to eq(ENV['DEEPL_AUTH_KEY'])
+        expect(subject.auth_key).to eq(ENV.fetch('DEEPL_AUTH_KEY', nil))
         expect(subject.host).to eq('https://api.deepl.com')
         expect(subject.version).to eq('v2')
       end

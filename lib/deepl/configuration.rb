@@ -8,7 +8,7 @@ module DeepL
 
     def initialize(data = {})
       data.each { |key, value| send("#{key}=", value) }
-      @auth_key ||= ENV['DEEPL_AUTH_KEY']
+      @auth_key ||= ENV.fetch('DEEPL_AUTH_KEY', nil)
       @host ||= 'https://api.deepl.com'
       @version ||= 'v2'
     end
