@@ -20,6 +20,33 @@ describe DeepL::Requests::Translate do
       end
     end
 
+    context 'when using `splitting_tags` options' do
+      it 'should work with a nil values' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, splitting_tags: nil)
+        expect(request.options[:splitting_tags]).to eq(nil)
+      end
+
+      it 'should work with a blank list' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, splitting_tags: '')
+        expect(request.options[:splitting_tags]).to eq('')
+      end
+
+      it 'should work with a comma-separated list' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, splitting_tags: tags_str)
+        expect(request.options[:splitting_tags]).to eq(tags_str)
+      end
+
+      it 'should convert arrays to strings' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, splitting_tags: tags_array)
+        expect(request.options[:splitting_tags]).to eq(tags_str)
+      end
+
+      it 'should leave strings as they are' do
+        request = DeepL::Requests::Translate.new(api, nil, nil, nil, splitting_tags: tags_str)
+        expect(request.options[:splitting_tags]).to eq(tags_str)
+      end
+    end
+
     context 'when using `non_splitting_tags` options' do
       it 'should work with a nil values' do
         request = DeepL::Requests::Translate.new(api, nil, nil, nil, non_splitting_tags: nil)
