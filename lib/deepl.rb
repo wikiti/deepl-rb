@@ -13,6 +13,7 @@ require 'deepl/exceptions/limit_exceeded'
 require 'deepl/exceptions/quota_exceeded'
 require 'deepl/exceptions/not_found'
 require 'deepl/exceptions/not_supported'
+require 'deepl/exceptions/request_entity_too_large'
 
 # -- Requests
 require 'deepl/requests/base'
@@ -33,6 +34,9 @@ require 'deepl/resources/language'
 require 'deepl/resources/language_pair'
 require 'deepl/resources/text'
 require 'deepl/resources/usage'
+
+# -- Utils
+require 'deepl/utils/exception_builder'
 
 # -- Other wrappers
 require 'deepl/api'
