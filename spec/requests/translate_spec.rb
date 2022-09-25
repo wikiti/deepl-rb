@@ -329,5 +329,14 @@ describe DeepL::Requests::Translate do
         end
       end
     end
+
+    context 'When performing a request with too many texts' do
+      let(:text) { Array.new(10_000) { |i| "This is the sentence number #{i}" } }
+
+      it 'should raise a request entity too large error' do
+        expect { subject.request }.to raise_error(DeepL::Exceptions::RequestEntityTooLarge,
+                                                  /request size has reached the supported limit/)
+      end
+    end
   end
 end
