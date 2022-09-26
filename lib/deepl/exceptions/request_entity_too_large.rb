@@ -5,7 +5,7 @@ module DeepL
     class RequestEntityTooLarge < RequestError
       def message
         'The request size has reached the supported limit. ' \
-          "Make sure that you're sending more than 50 sentences when translating"
+          "Make sure that you're not sending more than 50 text parts."
       end
     end
   end
