@@ -1,5 +1,7 @@
 [![Gem Version](https://badge.fury.io/rb/deepl-rb.svg)](https://badge.fury.io/rb/deepl-rb) [![CircleCI](https://circleci.com/gh/wikiti/deepl-rb.svg?style=shield)](https://circleci.com/gh/wikiti/deepl-rb) [![CodeCov](https://codecov.io/gh/wikiti/deepl-rb/branch/master/graph/badge.svg?token=SHLgQNlZ4o)](https://codecov.io/gh/wikiti/deepl-rb)
 
+This project  has been archived in favour of the [official DeepL ruby gem](https://github.com/DeepLcom/deepl-rb).
+
 # DeepL for ruby
 
 A simple ruby wrapper for the [DeepL translation API (v2)](https://www.deepl.com/api.html).
